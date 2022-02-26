@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+<i class="dark hidden"></i>
+    <title>Hodleconomist | Differences between Cardano and Polkadot blockchains</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Comparison of basic features and functions of Cardano and Polkadot protocols">
+    <meta name="keywords" content="Blockchain, Cardano, Polkadot, Diffrences between Cardano and Polkadot, Functions of Cardano, Functions of Polkadot, Dr Gavin Wood, Charles Hoskinson, Blockchain Scalability, Python" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Hodleconomist | Differences between Cardano and Polkadot blockchains" />
+    
+    
+        
+        <link rel="stylesheet" href="https://example.com/css/styles.min.80a678bfed5c9bd9e1b305198f8985b92db9883d55e3ee73e580ded9d8bbff0a.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Comparison of basic features and functions of Cardano and Polkadot protocols">
+<meta property="og:site_name" content="Hodleconomist">
+<meta property="og:description" content="Comparison of basic features and functions of Cardano and Polkadot protocols">
+<meta property="og:url" content="https://example.com/post/cardano_vs_polkadot/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://example.com/post/cardano_vs_polkadot/">
+
+<meta name="twitter:description" content="Comparison of basic features and functions of Cardano and Polkadot protocols">
+<meta property="article:published_time" content="2021-11-08T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2021-11-08T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://example.com/img/Cardano_vs_polkadot.jpg">
+<meta property="og:image:url" content="https://example.com/img/Cardano_vs_polkadot.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://example.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://example.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Differences between Cardano and Polkadot blockchains</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2021/11/08 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://example.com/tags/analysis">analysis</a> |
+                    
+                    <a href="https://example.com/tags/crypto">crypto</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://example.com/img/Cardano_vs_polkadot.jpg">
+        
+        <div class="content mt-5"><h2 id="comparison-of-cardano-and-polkadot-and-analysis-of-changes-on-github">Comparison of Cardano and Polkadot and analysis of changes on Github</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Third generation blockchain.
+When we talk about third generation Blockchain networks, Cardano or Polkadot most often come to mind. But what is a third generation network, and what is meant by that?
+The classic first-generation network is Bitcoin. Ethereum with a consesus algorithm based on Proof of Work can be considered a second-generation network.
+A characteristic feature of the third generation network is the use of the Proof of Stake algorithm to confirm transactions. It is significantly less energy intensive and is way faster than the currently used Proof of Work algorithms. Thus Proof of Stake is considered to be more environmentally friendly and ensures sustainable development in the long term.
+Another distinctive feature of third generation Blockchains is scalability. Current Proof of Work networks have major problems in terms of transaction processing speed. For example, the Bitcoin network is only able to process about 7 transactions per second (not mentioning the Lightning network), the situation of Ethereum is much better now with the ability to process about 25 transactions per second. On the other hand, it should be noted that Visa&rsquo;s centralized payment system network processes around 2,000 transactions per second and is capable of processing more than 20,000 transactions per second.</p>
+<p>There are various solutions to make Blockchain scalable. These include sharding in Ethereum 2.0, parachains in Polkadot, Hydra in Cardano, second layer solutions such as rollups in the case of Ethereum 1.0 or Plasma in the case of Polygon, and sidechains such as xDai.
+It is also worth mentioning the interoperability of third generation networks. Its task is to connect the majority of independent networks into one whole or to ensure the possibility of information flow between them. An example of this can be Chainlink, a network that aims to provide data from other areas of the classical economy to various Blockchains.</p>
+<h3 id="purpose">Purpose</h3>
+<p>The aim of this article is to show the main differences between Cardano and Polkadot, and to introduce the concepts and terms used across these networks.</p>
+<h3 id="methodology">Methodology</h3>
+<p>Most of this article was done using the descriptive method. The second part is a loose comparison of Github repositories for Parity Technologies and IOHK, companies responsible for development of Polkadot and Cardano. The goal is to compare the number of uploaded files and commits, assuming that both projects are Open Source and the most important parts of the code are made available in public repositories. According to Linkedin profiles, Parity Technologies was founded in 2015 and IOHK in 2014. The timeframe for starting the operation of these two organizations, less than a year, should not affect the analysis. In order to automate the data comparison process and the possibility of using this method in the future, a  software was written in Python and the Jupyter Lab environment using the pandas library. Its main task is to automatically collect data on the number of code repositories and uploaded changes for individual companies. Then analyse data, and finally obtain descriptive statistics from this process.</p>
+<h3 id="founders">Founders</h3>
+<p>Dr. Gavin Wood is a computer scientist and holds a PhD in Information Technology. Gavin is also the founder of the Web3 Foundation, the Swiss non-profit organization that oversees the development of Polkadot (DOT), and the founder of UK-based Parity Technologies, a software development company. Parity Technologies has developed, among others, the Parity Ethereum software client, written in the Rust language. Moreover, on behalf of the Web3 Foundation, it develops and maintains Polkadot (DOT).</p>
+<p>Charles Hoskinson is a mathematician. Before starting his adventure with cryptography and blockchain, he studied analytical number theory at the Metropolitan State University of Denver and the University of Colorado Boulder. He is the founder of IOHK, an organization supporting the development of the Cardano network, and a co-founder of the Cardano Foundation. His current projects focus on educating young people about cryptocurrencies and creating tools to facilitate the use of cryptography. This includes researching, designing and developing Cardano.</p>
+<p>Both are also known as the early founders of Ethereum. Gavin Wood, as a programmer, collaborated on the creation of the Solidity smart contract language. Hoskinson did not stay in Ethereum for a long time. Buterin removed Hoskinson from Ethereum in 2014 after a dispute over whether the project should be commercial (Hoskinson&rsquo;s opinion) or non-profit (Buterin&rsquo;s opinion). Gavin Wood lasted as chief technology office at Ethereum for two years, and then along with Dr. Jutta Steiner also founded Parity Technologies from Ethereum.</p>
+<p>Both represent different approaches to creating your own projects. Charles Hoskinson focused on the development of Cardano based on a solid foundation of scientific research. His colleagues and scientists at IOHK have published a total of over 113 peer-reviewed papers and are announcing more. Based on these studies, the Cardano protocol is then implemented. So it can be said with certainty that Cardno is created on a very solid scientific basis. Hoskinson is very active on Youtube and other media, and the Cardano community is one of the strongest of the other Blockchains.
+Wood decided that all innovations and experiments would first be implemented on the Kusama Blockchain, which is a kind of testing ground for Polkadot. Wood is not as social as Hoskinson.</p>
+<h3 id="basic-features-of-cardano-and-polkadot-technologies">Basic features of Cardano and Polkadot technologies</h3>
+<h4 id="currency">Currency</h4>
+<p>The main accounting unit of the Cardano network is Ada, for Polkadot it is Dot. Both networks use the Proof of Stake (PoS) algorithm.</p>
+<h4 id="proof-of-stake">Proof of Stake</h4>
+<p>In one of their peer reviewed papers, scientists from several universities and IOHK (the institution working on the Cardano protocol) showed that the Proof of Stake system can be as safe as Proof of Work [IOHK, 2019]. So the thesis that Proof of Work is the only algorithm that gives the highest level of network security is unfounded.</p>
+<p>Cardano and Polkadot are not the only Blockchains using PoS at the moment. These include Algorand, Solana, Mina, Avalanche, Fantom and some other Blockchains such as EOS, Tron and Neo. As well as in the near future, Ethereum 2.0.</p>
+<h4 id="staking">Staking</h4>
+<p>Both networks are secured through a process called staking. The way it works is that in order to add more blocks to Blokchain, a validator / stake pool must be selected as the block leader for the other validators. To prevent malicious changes to the Blockchain, for example, to attack the network, the leader must have the trust of other network participants. To this end, it should have a &ldquo;financial stake&rdquo; in the network. In addition, each validator should convince other network participants, the so-called nominees or delegators to support its credibility by soliciting more &ldquo;financial interests&rdquo;. In this way, the network is secured by ensuring that transactions and blocks are added by honest participants who have an interest in the network functioning fairly, in other words, having &ldquo;skin in the game&rdquo;.</p>
+<p>The long term return on staking in the Cardano network is around 5%, in Polkadot it&rsquo;s around 14%. At first glance, it looks like Polkadot is crushing Cardano in this regard. However, it should be remembered that in Cardano it is possible to withdraw assets at any time, in Poladot there is a grace period of 28 days. This is a lot considering the fact that the crypto industry has quite strong price fluctuations, and within a month, a bull market can turn into a bear market.
+In addition, there is a phenomenon known as slashing in Polkadot. Which means that if you nominate a stake for a malicious and dishonest validator, you have to take into account the penalty of losing some of your funds. Therefore, in Polkadot, the emphasis is on transparent communication of the entire community, so that it is easy to detect entities acting against the network.</p>
+<p>In Cardano, the problem of penalties does not exist as it is solved by another method. Cardano does not need slashing as it has a unique reward distribution system that supports a high level of decentralization in an environment where all stakeholders are economically encouraged to behave rationally. The protocol economically encourages the desired number of stake pools / validators.
+It has also been scientifically proven by IOHK cryptographers in a peer reviewed articles that the slashing method is not necessary to maintain network integrity. In this way, the Cardano network and staking becomes more inclusive for new network participants who do not have to fear losing funds. This way, staking on the Cardano becomes child&rsquo;s play.</p>
+<h4 id="number-of-validators--stake-pools">Number of validators / stake pools</h4>
+<p>As of the day of writing this article, Cardano had about 2,921 validators called stake pools in the Cardano nomenclature (not all active). Polkadot had 297 validators. It should be noted that in the initial period, the number of validators in Polkadot is limited to 1000.</p>
+<p>In Cardano about 70.8% of all ADA circulating is staked, in Polkadot the figure was about 62.6%.
+The number of delegators or stakers in Carano is unlimited. Each wallet with more than 1 ADA can be staked. In Polkadot, the number of delegators called nominators in the Polkadot nomenclature is limited to 22,500. On the day of writing there were 22,434 and the minimum amount of DOT tokens required to be nominated during this period was 40, which amounted to about $800.</p>
+<p>This means that the Polkadot blockchain appears to be less inclusive than Cardano. At Cardano, anyone can stake no matter what the amount. In Polkadot, not only do you have to meet the minimum requirements, but you also have to wait for your turn to become a nominator, even though you have more than 40 DOT. Moreover, on June 30, 2021, this figure was increased from the previous DOT 20 without a significant increase in the number of nominators.</p>
+<h4 id="the-number-of-transactions-per-second">The number of transactions per second</h4>
+<p>Polkadot (DOT) uses a sophisticated hybrid consensus mechanism called Grandpa / Babe that allows networks to process approximately 1,000 transactions per second. Gavin declared that Polkadot (DOT) has a theoretical upper limit of 1 million transactions per second with parachains and multithreading.</p>
+<p>In the case of Cardano, the matter is more complicated. The Cardano network is currently set up in such a way as to minimize the number of empty blocks processed by validators. For this reason, Cardano&rsquo;s network speed is currently around 7 transactions per second. However, this is not a limit, but only a conscious network management, which can be increased at any time if the need arises. It all depends on the range of network use and the capacity of the blocks. The Cardano block has a capacity of 65,536 bytes, the data analysis shows that the average block utilization is below 10,000 bytes. So there is no point in increasing the network speed, as that would increase the number of empty blocks. With the introduction and propagation of smart contracts on Cardano, the variables responsible for the number of transactions per second will most likely increase. It is also worth mentioning the Cardano scaling technology called Hydra. It is a protocol that can raise the number of transactions per second to 1 million or even more.</p>
+<h4 id="tokenomics---the-economy-of-crypto-assets">Tokenomics - the economy of crypto assets</h4>
+<p>The supply of ADA currency in the Cardano network is limited at 45 billion. There are approximately 32 billion ADA in circulation today. Inflation rate is reduced every 4-5 years by half. In this respect, the system is very similar to Bitcoin. In the long term, the Cardano network is deflationary. It should be noted, however, that deflationary networks struggle with other theoretical problems in the field of tokenomics. One of them, for example, how the stake pools / validators should be rewarded when the entire planned supply of a given currency is pumped into circulation. And whether in such a situation the transaction fee rates will be enough to maintain the stake pool / validator.</p>
+<p>The supply of DOT currency in the Polkadot network is unlimited. The inflation rate is dynamic and depends on how much DOT is staked in a given period. The optimal level is to stake 50% of all DOTs traded. Then the validators receive all the inflation DOT they were supposed to receive as reward for processing the transaction. If the staking rate is lower or higher than 50%, then some of the DOT is deposited into the vault. The average inflation rate to the validators and the treasury is around 10%.</p>
+<h3 id="smart-contracts-on-cardano-and-polkadot-networks">Smart contracts on Cardano and Polkadot networks</h3>
+<h4 id="polkadota">Polkadota</h4>
+<p>It does not natively support smart contracts. This feature will be built on by other projects with parachains.</p>
+<h4 id="cardano">Cardano</h4>
+<p>It natively supports smart contracts using frameworks called Plutus and Marlowe, which are currently in the testing phase and will be released in September 2021.</p>
+<p>Plutus is a completely new framework for smart contracts based on the Haskell programming language. Haskell itself is a functional language and proves to be quite difficult for those used to programming in object-oriented languages. For this purpose, IOHK is working on implementing an additional framework called Marlowe.</p>
+<p>Marlowe is a domain specific language (DSL) based on the Plutus platform that uses visual programming tools (blocks similar to the Scratch language - <a href="https://scratch.mit.edu/">https://scratch.mit.edu/</a>) and allows you to build standard and simple financial contracts without having to master a difficult programming language.</p>
+<h3 id="analysis-of-the-number-of-changes-in-the-github-repository">Analysis of the number of changes in the Github repository</h3>
+<p>In this part of the article, we present a general analysis of github repositories for IOHK and Parity Technologies. The research was carried out in an automated manner, using the code provided below.
+The time range covers the period from the start of these repositories.</p>
+
+</br>
+
+<p>Fig 1. Source code for the analysis of changes in the Github repository, made with Python and the Jupyter Lab environment
+<img src="/img/Code_Cardano_Polkadot_Github.jpg" alt="Source code for the analysis of the number of changes in the Github repository written in Python">
+Source: Own study</p>
+
+</br>
+
+<h4 id="results">Results</h4>
+<p>The table below provides a quantitative comparison of changes to the Parity Technologies and IOHK github repositories.</p>
+<table>
+<thead>
+<tr>
+<th>Organization</th>
+<th>Parity Technologies</th>
+<th>IOHK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of repositories</td>
+<td>329</td>
+<td>389</td>
+</tr>
+<tr>
+<td>Average number of repo changes</td>
+<td>370.87</td>
+<td>1957.17</td>
+</tr>
+<tr>
+<td>Smallest number of repo changes</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Median  repo changes</td>
+<td>58</td>
+<td>109</td>
+</tr>
+<tr>
+<td>Highest repo changes</td>
+<td>12485</td>
+<td>228204</td>
+</tr>
+</tbody>
+</table>
+<p>Source: Own study</p>
+
+</br>
+
+<p>As can be seen from the table, the number of repositories for IOHK and Parity Technologies is roughly similar. The differences start to appear in the number of changes made. For Parity Technologies the average number of changes in repositories is 370, and for IOHK 1957. The difference is also almost two-fold in the median of changes introduced to repositories, which was 58 for Parity Technologies and 109 for IOHK.</p>
+<p>It can therefore be concluded that IOHK makes changes to its repositories on Github more often than Parity Technologies.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The above comparison shows that despite the use of different nomenclature, in fact the Cardano and Polkadot protocols are technologically similar to each other. Indeed, as Charles Hoskinson recalls in one of his interviews with Lex Friedman, their creators drew mutual inspiration from each other. Technically, despite the many advantages of the Polkadot protocol such as scalability, Cardano is a more open, inclusive and decentralized Blockchain.</p>
+<p>It should also be mentioned that apart from Cardano and Polkadot, there are many other interesting Blockchains, such as Algorand, Solana, Fantom, Mina, Chia, EOS and many others.</p>
+<blockquote>
+<p>Cardano is designed to be a more open, inclusive and decentralized Blockchain than Polkadot</p>
+</blockquote>
+<p>Literature:</p>
+<p>IOHK, Aggelos Kiayias, Alexander Russell, Bernardo David, Roman Oliynykov, Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol, 2019 [Access:] <a href="https://eprint.iacr.org/2016/889.pdf">https://eprint.iacr.org/2016/889.pdf</a></p>
+<p>Polkadot Wiki, 2021 [Access:] <a href="https://wiki.polkadot.network/docs/build-wallets">https://wiki.polkadot.network/docs/build-wallets</a></p>
+<p>Cardano Forum, 2021 [Access:] <a href="https://forum.cardano.org">https://forum.cardano.org</a></p>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://example.com/categories/crypto">crypto</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://example.com/post/axie_infinity_correlation/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Correlation of selected crypto companies with Axie Infinity
+                        </div>
+                    </a>
+                    
+                </div>
+                
+                <a class="next lg:text-2xl" href="https://example.com/post/hdbscan_analysis_crypto/">
+                    <div
+                        class="transition-colors duration-300 col-span-1 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                        Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method <span class="icon-keyboard_arrow_right"></span>
+                    </div>
+                </a>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://example.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2022/02">2022/02 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/what_is_cardano/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">What is Cardano?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/08/09</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/hdbscan_analysis_crypto/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/12/07</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/cardano_vs_polkadot/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Differences between Cardano and Polkadot blockchains</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/11/08</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/fed_fund_rates/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Interest Rates and Stock Market - do rising interest rates harm the stock market?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/02/20</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://example.com" class="hover:text-gray-500">Hodleconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

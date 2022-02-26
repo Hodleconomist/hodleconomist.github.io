@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+<i class="dark hidden"></i>
+    <title>Hodleconomist | Correlation of selected crypto companies with Axie Infinity</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Analysis of the correlation of Riot Blockchain, Coinbase, Canaan and Axie Infinity game tokens using the Python language">
+    <meta name="keywords" content="Correlation analysis, Correlation, Riot Blockchain, Coinbase, Canaan, Axie Infinity, Heat map, Python, Bitcoin, Ethereum" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Hodleconomist | Correlation of selected crypto companies with Axie Infinity" />
+    
+    
+        
+        <link rel="stylesheet" href="https://example.com/css/styles.min.80a678bfed5c9bd9e1b305198f8985b92db9883d55e3ee73e580ded9d8bbff0a.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Analysis of the correlation of Riot Blockchain, Coinbase, Canaan and Axie Infinity game tokens using the Python language">
+<meta property="og:site_name" content="Hodleconomist">
+<meta property="og:description" content="Analysis of the correlation of Riot Blockchain, Coinbase, Canaan and Axie Infinity game tokens using the Python language">
+<meta property="og:url" content="https://example.com/post/axie_infinity_correlation/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://example.com/post/axie_infinity_correlation/">
+
+<meta name="twitter:description" content="Analysis of the correlation of Riot Blockchain, Coinbase, Canaan and Axie Infinity game tokens using the Python language">
+<meta property="article:published_time" content="2021-10-27T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2021-10-27T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://example.com/img/Axie_infinity_investing.jpg">
+<meta property="og:image:url" content="https://example.com/img/Axie_infinity_investing.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://example.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://example.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Correlation of selected crypto companies with Axie Infinity</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2021/10/27 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://example.com/tags/analysis">analysis</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://example.com/img/Axie_infinity_investing.jpg">
+        
+        <div class="content mt-5"><h2 id="correlation-of-selected-crypto-companies-with-axie-infinity-game-tokens">Correlation of selected crypto companies with Axie Infinity game tokens</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Canaan Inc and Riot Blockchain are two companies listed on the Nasdaq exchange, whose activities are related to Bitcoin mining. Canaan is a producer of specialized devices for high performance computing - called ASIC (application specific integrated circuit), used, among others, for calculations securing the Bitcoin network.
+Riot Blockchain is a mining company supporting Bitcoin blockchain by mining and securing networks on a large scale in the United States. The company is focused on reducing greenhouse gas emissions and the widest possible use of renewable energy sources.
+Coinbase is a Nasdaq-listed company that provides cryptocurrency exchange services, the so-called CEX (centralized exchange).
+Axie Infinity is an online video game based on NFT (Non-Fungible Tokens) tokens created by the Vietnamese studio Sky Mavis, which uses cryptocurrencies based on the Ethereum protocol called AXS and SLP.</p>
+<h3 id="purpose">Purpose</h3>
+<p>The purpose of this article is to compare the relationships between selected entities and Axie Infinity game token.g
+It is also an attempt to determine how strongly correlated the selected entities in the cryptocurrency industry are with each other in terms of daily percentage changes of their rates of return. To seek an answer to the question of whether these entities behaved similarly in the analyzed period.</p>
+<h3 id="methodology">Methodology</h3>
+<p>A target group was selected for the research, consisting of three companies listed on classic stock exchanges and a single token listed mainly on centralized cryptocurrency exchanges (CEX) as well as on automated cryptocurrency exchanges AMM, such as Uniswap.</p>
+<p>The time period has been set for the dates between 04/04/2021 and 14/07/2021. This period includes both the uptrend from the beginning of the year and the downtrend from the second half of 2021.</p>
+<p>The basic data of the subjects participating in the research are presented in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>In USD billion</th>
+<th>Activities</th>
+<th>Market valuation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coinbase</td>
+<td>Centralized crypto exchange</td>
+<td>46.90</td>
+</tr>
+<tr>
+<td>Canaan</td>
+<td>Bitcoin mining</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td>Riot Blockchain</td>
+<td>Bitcoin mining</td>
+<td>2.36</td>
+</tr>
+<tr>
+<td>Axie Infinity</td>
+<td>Crypto game</td>
+<td>2.30</td>
+</tr>
+</tbody>
+</table>
+<p>Then, in order to automate the analysis process, a Python program was written consisting of several functions, using known data science ecosystem libraries such as numpy, pandas, scipy, matplotlib and others. The aim of the software was to collect data on the stock quotes of the analyzed entities from the Internet, cleaning, processing and presentation. In this way, the entire process becomes repeatable, and it is possible to update it and run it again in successive periods of time.</p>
+<p>One of the first problems encountered was obtaining uniform data. During the research, it turned out that Axie Infinity game tokens are not in the stooq.com database, so it was decided that the data would be obtained from coingecko.com. Due to the separate methods of data presentation between stooq.com and coingecko.com, additional functions of the program had been written in order to standardize the available data.</p>
+<p>After the data was obtained, the Pearson correlation coefficient matrix was computed. That is, a matrix whose elements are the values of correlation coefficients for the appropriate pairs of variables, which in this case are the daily rates of return for individual entities. The computed correlation matrix was presented by means of a heatmap.</p>
+
+</br>
+
+<p>The correlation coefficient r is between &lt;-1.1&gt;, where values -1 and 1 indicate perfect correlation and 0 no correlation.</p>
+<p>The strength of the correlation for the absolute value | r | (dependency level)</p>
+<ul>
+<li>&lt;0.2 - none</li>
+<li>0.2 - 0.4 - weak</li>
+<li>0.4 - 0.7 - moderate</li>
+<li>0.7 - 0.9 - quite strong</li>
+<li>0.9 - very strong</li>
+</ul>
+
+</br>
+
+<p>Fig 1. Analysis source code, made with Python and the Jupyter Lab environment
+<script type="application/javascript" src="https://gist.github.com/Hodleconomist/37a690af8272e89f1f610d185000bf0d.js"></script>
+
+Source: Own study</p>
+
+</br>
+
+<h3 id="results">Results</h3>
+<p>The research results show that in the analyzed period there was no strong relationship between the daily rates of return of selected entities.</p>
+<p>The heat map shows that there is a moderate correlation between Riot Blockchain and Canaan Inc, which is understandable given the complementary scope of activities.</p>
+
+</br>
+
+<p>Fig. 2. Heat map of the matrix of correlation coefficients of selected entities in the cryptoassets industry
+<img src="/img/Axie_heatmap_of_correlation_matrix.jpg" alt="The matrix of correlation coefficients of selected entities in the cryptoassets industry">
+Source: Own study</p>
+
+</br>
+
+<p>On the other hand, the analysis showed no correlation between Canaan Inc, Riot Blockchain, Coinbase, and Axie Infinity game tokens, which is a completely separate segment of the cryptoasset industry.
+Coinbase&rsquo;s correlation with other entities also remains weak during the period considered.
+Regression analysis for the companies with the highest degree of correlation, Canaan Inc and Riot Blockchain, also shows only a moderate relationship between the companies, with high data dispersion.</p>
+
+</br>
+
+<p>Fig 3. Linear regression of Canaan Inc and Riot Blockchain companies distinguished by the highest level of correlation among the tested entities
+<img src="/img/Axie_regression.jpg" alt="Linear regression of the companies with the highest correlation">
+Source: Own study</p>
+
+</br>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The research results show that there are entities whose daily rates of return are not correlated with each other. So despite the general view that the entire crypto market is highly correlated with each other, it seems to be possible to create a portfolio with significant diversification only in the area of the crypto industry.</p>
+<blockquote>
+<p>Diversification into different areas of the crypto asset industry is key to a sustainable portfolio</p>
+</blockquote>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://example.com/categories/analysis">analysis</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://example.com/post/valuation_of_uniswap_sushiswap_coinbase/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Comparable analysis of Uniswap vs Sushiswap vs Coinbase
+                        </div>
+                    </a>
+                    
+                </div>
+                
+                <a class="next lg:text-2xl" href="https://example.com/post/cardano_vs_polkadot/">
+                    <div
+                        class="transition-colors duration-300 col-span-1 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                        Differences between Cardano and Polkadot blockchains <span class="icon-keyboard_arrow_right"></span>
+                    </div>
+                </a>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://example.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2022/02">2022/02 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/hdbscan_analysis_crypto/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/12/07</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/fed_fund_rates/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Interest Rates and Stock Market - do rising interest rates harm the stock market?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/02/20</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/what_is_dao/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">What is DAO</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/07/05</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/cardano_vs_polkadot/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Differences between Cardano and Polkadot blockchains</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/11/08</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://example.com" class="hover:text-gray-500">Hodleconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

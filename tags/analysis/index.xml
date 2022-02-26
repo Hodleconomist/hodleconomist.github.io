@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>analysis on Hodleconomist</title>
+    <link>https://example.com/tags/analysis/</link>
+    <description>Recent content in analysis on Hodleconomist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 20 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interest Rates and Stock Market - do rising interest rates harm the stock market?</title>
+      <link>https://example.com/post/fed_fund_rates/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/fed_fund_rates/</guid>
+      <description>Are rising interest rates bad for the stock market? Introduction On January 10th, Federal Reserve Chairman Powell spoke at the hearing, saying that the economy after the epidemic may be different from the previous expansion, the US labor market is strong, and policies must be considered forward-looking, and tools will be used to support the economy and employment. market. In fact, since the Fed released the early signal of raising interest rates last week, the market&amp;rsquo;s expectations for interest rate hikes in March have begun to rise sharply.</description>
+    </item>
+    
+    <item>
+      <title>Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</title>
+      <link>https://example.com/post/hdbscan_analysis_crypto/</link>
+      <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/hdbscan_analysis_crypto/</guid>
+      <description>Classification of market phases for crypto assets using HDBSCAN and PCA methods Introduction Market analysts employ a variety of statistical methods to classify market phases in order to develop investment strategies for different financial assets. Stock traders and derivatives traders usually have an arsenal of financial strategies (growth, flattening, butterflies) that they use depending on the current interest rate regime (i.e. when the Central Bank is easing or tightening its monetary policy).</description>
+    </item>
+    
+    <item>
+      <title>Differences between Cardano and Polkadot blockchains</title>
+      <link>https://example.com/post/cardano_vs_polkadot/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/cardano_vs_polkadot/</guid>
+      <description>Comparison of Cardano and Polkadot and analysis of changes on Github Introduction Third generation blockchain. When we talk about third generation Blockchain networks, Cardano or Polkadot most often come to mind. But what is a third generation network, and what is meant by that? The classic first-generation network is Bitcoin. Ethereum with a consesus algorithm based on Proof of Work can be considered a second-generation network. A characteristic feature of the third generation network is the use of the Proof of Stake algorithm to confirm transactions.</description>
+    </item>
+    
+    <item>
+      <title>Correlation of selected crypto companies with Axie Infinity</title>
+      <link>https://example.com/post/axie_infinity_correlation/</link>
+      <pubDate>Wed, 27 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/axie_infinity_correlation/</guid>
+      <description>Correlation of selected crypto companies with Axie Infinity game tokens Introduction Canaan Inc and Riot Blockchain are two companies listed on the Nasdaq exchange, whose activities are related to Bitcoin mining. Canaan is a producer of specialized devices for high performance computing - called ASIC (application specific integrated circuit), used, among others, for calculations securing the Bitcoin network. Riot Blockchain is a mining company supporting Bitcoin blockchain by mining and securing networks on a large scale in the United States.</description>
+    </item>
+    
+    <item>
+      <title>Comparable analysis of Uniswap vs Sushiswap vs Coinbase</title>
+      <link>https://example.com/post/valuation_of_uniswap_sushiswap_coinbase/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/valuation_of_uniswap_sushiswap_coinbase/</guid>
+      <description>Comparable valuation of cryptocurrency exchanges Uniswap, Sushiswap and Coinbase Introduction Coinbase is a Nasdaq listed company operating one of the largest centralized exchanges in the crypto industry. Unlike Coinbase, Uniswap and Sushiswap are not enterprises in the classic sense of the Commercial Companies Code.
+Both Uniswap and Sushiswap are protocols that provide liquidity and allow automated trading of ERC-20 tokens with Ethereum. In other words, they are decentralized automatic exchanges operating on the Ethereum blockchain, abbreviated as DEX - (decentralized exchange).</description>
+    </item>
+    
+  </channel>
+</rss>

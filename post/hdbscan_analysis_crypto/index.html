@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+<i class="dark hidden"></i>
+    <title>Hodleconomist | Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Classification of market phases with the use of HDBSCAN machine learning method, supported by the Principal Component Analysis method">
+    <meta name="keywords" content="Blockchain, Python, Machine Learning, HDBSCAN, PCA, Principal Component Analysis, Market Phases , Bitcoin, Cryptocurrencies, Cryptoassets, Cardano, Bitcoin, Ethereum, Market Trends" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Hodleconomist | Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method" />
+    
+    
+        
+        <link rel="stylesheet" href="https://example.com/css/styles.min.80a678bfed5c9bd9e1b305198f8985b92db9883d55e3ee73e580ded9d8bbff0a.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Classification of market phases with the use of HDBSCAN machine learning method, supported by the Principal Component Analysis method">
+<meta property="og:site_name" content="Hodleconomist">
+<meta property="og:description" content="Classification of market phases with the use of HDBSCAN machine learning method, supported by the Principal Component Analysis method">
+<meta property="og:url" content="https://example.com/post/hdbscan_analysis_crypto/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://example.com/post/hdbscan_analysis_crypto/">
+
+<meta name="twitter:description" content="Classification of market phases with the use of HDBSCAN machine learning method, supported by the Principal Component Analysis method">
+<meta property="article:published_time" content="2021-12-07T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2021-12-07T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://example.com/img/Hdbscan.jpg">
+<meta property="og:image:url" content="https://example.com/img/Hdbscan.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://example.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://example.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2021/12/07 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://example.com/tags/analysis">analysis</a> |
+                    
+                    <a href="https://example.com/tags/cryptocurrencies">cryptocurrencies</a> |
+                    
+                    <a href="https://example.com/tags/algorythms">algorythms</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://example.com/img/Hdbscan.jpg">
+        
+        <div class="content mt-5"><h2 id="classification-of-market-phases-for-crypto-assets-using-hdbscan-and-pca-methods">Classification of market phases for crypto assets using HDBSCAN and PCA methods</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Market analysts employ a variety of statistical methods to classify market phases in order to develop investment strategies for different financial assets.
+Stock traders and derivatives traders usually have an arsenal of financial strategies (growth, flattening, butterflies) that they use depending on the current interest rate regime (i.e. when the Central Bank is easing or tightening its monetary policy). In order to identify the current interest rate policy, financial analysts usually group different financial signals and then compare them with the time series of the analyzed financial assets.
+We believe that a similar analysis can be applied to crypto price movements in order to determine the current phase of market volatility and to facilitate investment decisions.</p>
+
+</br>
+
+<p>Fig. 1. Classification of changes in interest rates in the Euroland and the most important related events.
+<img src="/img/Analysis_interest_rates_regimes.jpg" alt="Phases of changes in interest rates in Euroland">
+Source: Lemus G. QMA FREXIT observations, 2017, Arbor Research &amp; Trading UK Limited</p>
+
+</br>
+
+<h3 id="purpose">Purpose</h3>
+<p>The aim of the study is an attempt to classify various market phases using a rigorous unsupervised machine learning method - HDBSCAN and PCA - Principal Component Analysis, and to determine the current market phase for a group of crypto assets.</p>
+<h3 id="methodology">Methodology</h3>
+<p>The first part of this article was prepared using the descriptive method. The second part is the application of the HDBSCAN machine learning method to classify market phases determining the degree of volatility of stock prices. HDBSCAN uses unsupervised machine learning to find clusters or dense regions of a dataset.
+Through unsupervised learning, HDBSCAN tries to discover patterns in the set of input fields. The records are then grouped such that those in the same cluster are similar to each other, but the records in different clusters are different. The HDBSCAN algorithm views clusters as high density areas separated by low density areas. Therefore, the clusters found by HDBSCAN can be of any shape, unlike, for example, the k-means method which assumes that the clusters are convex in shape. The HDBSCAN algorithm also finds outliers that lie alone in low-density regions. Unlike the simple k-means grouping method, HDBSCAN doesn&rsquo;t need to make assumptions about the number of groups. However, you must specify a minimum cluster size.</p>
+<p>An additional auxiliary method used to carry out the research is the PCA - Principal Component Analysis. PCA is a statistical method used to reduce the number of variables in a data set. This is a dimension reduction method that is often used to reduce the dimensionality of large datasets, converting a large set of variables into a smaller one that still contains most of the information as in a large set. This is done by linking highly correlated variables together.
+Reducing the number of variables in a dataset naturally comes at the cost of accuracy, but the trick to reducing dimensions is to give away some accuracy for simplicity. The PCA method is used because data sets with fewer number of features are easier to explore and visualize, and they significantly facilitate and speed up data analysis for machine learning algorithms without additional variables to be processed.</p>
+
+</br>
+
+<p>Fig 2. Source code of the market volatility analysis using the HDBSCAN method, made with Python and the Jupyter Lab environment
+<script type="application/javascript" src="https://gist.github.com/Hodleconomist/5f8ca5cb36b51601dbd0a31dd572efc8.js"></script>
+
+Source: Own study</p>
+<h3 id="time-range">Time range</h3>
+<p>Some crypto assets already have a long history of existence, while others are relatively new. Due to the necessity to obtain data from the same period for many protocols, it was decided to limit the analysis to about a year. The time range covers the period from Sep 17, 2020 to Sep 6, 2021.</p>
+<h3 id="target-group">Target group</h3>
+<p>The following 13 crypto assets were included in the target group:</p>
+<p>The table below shows the selected crypto assets and their market capitalization as at the date of data collection.</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Protocol</th>
+<th>Market Cap in USD bln</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Bitcoin</td>
+<td>816.12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ethereum</td>
+<td>357.63</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Cardano</td>
+<td>70.51</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Solana</td>
+<td>42.31</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Polkadot</td>
+<td>30.83</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Avalanche</td>
+<td>15.19</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Uniswap</td>
+<td>12.92</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Chainlink</td>
+<td>10.89</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Algorand</td>
+<td>10.30</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Polygon</td>
+<td>8.06</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Monero</td>
+<td>4.22</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Neo</td>
+<td>2.98</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Enjin-coin</td>
+<td>1.15</td>
+</tr>
+</tbody>
+</table>
+<p>Source: Own study</p>
+<h4 id="results">Results</h4>
+<p>Identification of changes in the price volatility phases of crypto assets.</p>
+<p>As a result of the cluster analysis using the HDBSCAN and PCA methods, the following sequence of numbers was obtained, denoting individual clusters.
+{-1, 0, 1, 2, 3, 4, 5, 6}</p>
+<p>7 clusters were found and a number of outliers not assigned to any clusters described with the number -1. They are marked in light gray on the chart.</p>
+
+</br>
+
+<p>Fig. 3. Clusters found using the HDBSCAN method
+<img src="/img/Analysis_hdbscan_clusters.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+
+</br>
+
+<p>It is very important to note that cluster analysis does not take time into account. Some clusters collect data from different time periods, so we must remember that our analysis removed the time dimension from the data. This behavior can be restored by adding it back by projecting the clusters onto the timeline of the individual crypto assets.</p>
+
+</br>
+
+<p>Fig. 4. Projection of cluster data to the timeline for the Cardano crypto asset
+<img src="/img/Analysis_hdbscan_cardano.jpg" alt="Project Cluster Data to Timeline for Cardano">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 5. Chart of Cardano exchange rates against the dollar
+<img src="/img/Analysis_hdbscan_cardano_pure.jpg" alt="Graph showing Cardano vs the Dollar">
+Source: Own study</p>
+
+</br>
+
+<p>As can be seen from the above charts, the calculated seven clusters representing the phases of crypto assets price volatility were reflected in the actual crypto currency prices. In this example, these phases have been projected onto the Cardano price chart. They can also be projected for all 13 cryptocurrencies taken for research. It should be taken into account that in some cases the discontinuity between certain phases resulting from the projection of the clusters onto the timeline has been shown in the form of a straight line. This is the case with purple and light brown clusters.</p>
+
+</br>
+
+<p>According to the HDBSCAN analysis, currently the prices are in the phase of the highest volatility indicated in light brown.
+The phases with the lowest variability are shown as orange, blue, green and red. Medium variation phases are shown in pink.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Based on the conducted research and the results obtained in the form of data clusters projected onto the timeline for the Cardano blockchain, it can be concluded that the last phase of price volatility belongs to the cluster with the highest volatility. It is also one of the riskiest phases of volatility. In retrospect, the most appropriate phases for purchasing crypto assets were orange, blue, green, red and even pink.
+In the current situation, great caution should be exercised in making investment decisions.</p>
+<p>It could be argued that an experienced analyst could come to similar conclusions without the need for such advanced machine learning tools. However, we believe that a scientific approach to the analysis systematizes the decision making process, and the use of HDBSCAN and PCA methods help to automate this process.</p>
+<blockquote>
+<p>The HDBSCAN method in combination with the PCA method can be a very powerful tool for analyzing the price volatility of crypto assets.</p>
+</blockquote>
+<p>Literature:</p>
+<p>Lemus G. 2017, QMA FREXIT Observations, [Access:] <a href="https://drive.google.com/file/d/1SEbOM9TSKy3VMrrJMIMDpKaXuBRcspG6/view">https://drive.google.com/file/d/1SEbOM9TSKy3VMrrJMIMDpKaXuBRcspG6/view</a></p>
+<p>Lemus G. 2018, Can AI identify a Financial Bubble ?, [Access:] <a href="https://medium.datadriveninvestor.com/can-ai-identify-a-financial-bubble-5c64cca809e8">https://medium.datadriveninvestor.com/can-ai-identify-a-financial-bubble-5c64cca809e8</a></p>
+<p>Lemus G. 2018, Rates Clustering, [Access:] <a href="https://lamatuk.medium.com/rates-clustering-611a3af9b294">https://lamatuk.medium.com/rates-clustering-611a3af9b294</a></p>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://example.com/categories/analysis">analysis</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://example.com/post/cardano_vs_polkadot/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Differences between Cardano and Polkadot blockchains
+                        </div>
+                    </a>
+                    
+                </div>
+                
+                <a class="next lg:text-2xl" href="https://example.com/post/fed_fund_rates/">
+                    <div
+                        class="transition-colors duration-300 col-span-1 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                        Interest Rates and Stock Market - do rising interest rates harm the stock market? <span class="icon-keyboard_arrow_right"></span>
+                    </div>
+                </a>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://example.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/archives/2022/02">2022/02 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://example.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/hdbscan_analysis_crypto/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/12/07</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/cardano_vs_polkadot/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Differences between Cardano and Polkadot blockchains</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/11/08</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/fed_fund_rates/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Interest Rates and Stock Market - do rising interest rates harm the stock market?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/02/20</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/what_is_cardano/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">What is Cardano?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/08/09</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://example.com" class="hover:text-gray-500">Hodleconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

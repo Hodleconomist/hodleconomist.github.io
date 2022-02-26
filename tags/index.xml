@@ -1,81 +1,90 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on HodlEconomist</title>
-    <link>https://hodleconomist.github.io/tags/</link>
-    <description>Recent content in Tags on HodlEconomist</description>
+    <title>Tags on Hodleconomist</title>
+    <link>https://example.com/tags/</link>
+    <description>Recent content in Tags on Hodleconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://hodleconomist.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>themes</title>
-      <link>https://hodleconomist.github.io/tags/themes/</link>
-      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
+      <title>analysis</title>
+      <link>https://example.com/tags/analysis/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/themes/</guid>
+      <guid>https://example.com/tags/analysis/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>css</title>
-      <link>https://hodleconomist.github.io/tags/css/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <title>algorythms</title>
+      <link>https://example.com/tags/algorythms/</link>
+      <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/css/</guid>
+      <guid>https://example.com/tags/algorythms/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>html</title>
-      <link>https://hodleconomist.github.io/tags/html/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <title>cryptocurrencies</title>
+      <link>https://example.com/tags/cryptocurrencies/</link>
+      <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/html/</guid>
+      <guid>https://example.com/tags/cryptocurrencies/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>markdown</title>
-      <link>https://hodleconomist.github.io/tags/markdown/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <title>crypto</title>
+      <link>https://example.com/tags/crypto/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/markdown/</guid>
+      <guid>https://example.com/tags/crypto/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>privacy</title>
-      <link>https://hodleconomist.github.io/tags/privacy/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <title>defi</title>
+      <link>https://example.com/tags/defi/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/privacy/</guid>
+      <guid>https://example.com/tags/defi/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>shortcodes</title>
-      <link>https://hodleconomist.github.io/tags/shortcodes/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <title>dex</title>
+      <link>https://example.com/tags/dex/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/shortcodes/</guid>
+      <guid>https://example.com/tags/dex/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>text</title>
-      <link>https://hodleconomist.github.io/tags/text/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <title>valuation</title>
+      <link>https://example.com/tags/valuation/</link>
+      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/text/</guid>
+      <guid>https://example.com/tags/valuation/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>emoji</title>
-      <link>https://hodleconomist.github.io/tags/emoji/</link>
-      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      <title>smartcontracts</title>
+      <link>https://example.com/tags/smartcontracts/</link>
+      <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://hodleconomist.github.io/tags/emoji/</guid>
+      <guid>https://example.com/tags/smartcontracts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dao</title>
+      <link>https://example.com/tags/dao/</link>
+      <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/dao/</guid>
       <description></description>
     </item>
     

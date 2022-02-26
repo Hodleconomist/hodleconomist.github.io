@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2021/12 on Hodleconomist</title>
+    <link>https://example.com/archives/2021/12/</link>
+    <description>Recent content in 2021/12 on Hodleconomist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://example.com/archives/2021/12/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</title>
+      <link>https://example.com/post/hdbscan_analysis_crypto/</link>
+      <pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/hdbscan_analysis_crypto/</guid>
+      <description>Classification of market phases for crypto assets using HDBSCAN and PCA methods Introduction Market analysts employ a variety of statistical methods to classify market phases in order to develop investment strategies for different financial assets. Stock traders and derivatives traders usually have an arsenal of financial strategies (growth, flattening, butterflies) that they use depending on the current interest rate regime (i.e. when the Central Bank is easing or tightening its monetary policy).</description>
+    </item>
+    
+  </channel>
+</rss>

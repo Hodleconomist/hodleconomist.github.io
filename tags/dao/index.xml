@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dao on Hodleconomist</title>
-    <link>https://example.com/tags/dao/</link>
+    <link>https://www.hodleconomist.com/tags/dao/</link>
     <description>Recent content in dao on Hodleconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/dao/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.hodleconomist.com/tags/dao/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is DAO</title>
-      <link>https://example.com/post/what_is_dao/</link>
+      <link>https://www.hodleconomist.com/post/what_is_dao/</link>
       <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/post/what_is_dao/</guid>
+      <guid>https://www.hodleconomist.com/post/what_is_dao/</guid>
       <description>What is DAO? DAO -  Decentralized Autonomous Organization  is an organization operating in accordance with the rules encoded as a computer program also known as a smart contract (smart contract). Think of it as a kind of company, registerd on blockchain that is run by smart contracts.
 What is a smart contract? This is a self-executing contract where the terms between buyer and seller are written directly into the lines of code.</description>
     </item>

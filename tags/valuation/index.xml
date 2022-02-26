@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>valuation on Hodleconomist</title>
-    <link>https://example.com/tags/valuation/</link>
+    <link>https://www.hodleconomist.com/tags/valuation/</link>
     <description>Recent content in valuation on Hodleconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/valuation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.hodleconomist.com/tags/valuation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Comparable analysis of Uniswap vs Sushiswap vs Coinbase</title>
-      <link>https://example.com/post/valuation_of_uniswap_sushiswap_coinbase/</link>
+      <link>https://www.hodleconomist.com/post/valuation_of_uniswap_sushiswap_coinbase/</link>
       <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/post/valuation_of_uniswap_sushiswap_coinbase/</guid>
+      <guid>https://www.hodleconomist.com/post/valuation_of_uniswap_sushiswap_coinbase/</guid>
       <description>Comparable valuation of cryptocurrency exchanges Uniswap, Sushiswap and Coinbase Introduction Coinbase is a Nasdaq listed company operating one of the largest centralized exchanges in the crypto industry. Unlike Coinbase, Uniswap and Sushiswap are not enterprises in the classic sense of the Commercial Companies Code.
 Both Uniswap and Sushiswap are protocols that provide liquidity and allow automated trading of ERC-20 tokens with Ethereum. In other words, they are decentralized automatic exchanges operating on the Ethereum blockchain, abbreviated as DEX - (decentralized exchange).</description>
     </item>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2021/11 on Hodleconomist</title>
-    <link>https://www.hodleconomist.com/archives/2021/11/</link>
+    <link>https://www.codingeconomist.com/archives/2021/11/</link>
     <description>Recent content in 2021/11 on Hodleconomist</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://www.hodleconomist.com/archives/2021/11/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://www.codingeconomist.com/archives/2021/11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Differences between Cardano and Polkadot blockchains</title>
-      <link>https://www.hodleconomist.com/post/cardano_vs_polkadot/</link>
+      <link>https://www.codingeconomist.com/post/cardano_vs_polkadot/</link>
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://www.hodleconomist.com/post/cardano_vs_polkadot/</guid>
+      <guid>https://www.codingeconomist.com/post/cardano_vs_polkadot/</guid>
       <description>Comparison of Cardano and Polkadot and analysis of changes on Github Introduction Third generation blockchain. When we talk about third generation Blockchain networks, Cardano or Polkadot most often come to mind. But what is a third generation network, and what is meant by that? The classic first-generation network is Bitcoin. Ethereum with a consesus algorithm based on Proof of Work can be considered a second-generation network. A characteristic feature of the third generation network is the use of the Proof of Stake algorithm to confirm transactions.</description>
     </item>
     

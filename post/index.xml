@@ -6,7 +6,17 @@
     <description>Recent content in Posts on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 20 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using NLP and SEC filings to explore hitech companies</title>
+      <link>https://www.codingeconomist.com/post/analysis_of_new_technology_companies/</link>
+      <pubDate>Sun, 20 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/analysis_of_new_technology_companies/</guid>
+      <description>Analysis of hitech companies Introduction Recently a survey was conducted among participants of investing channel on reddit. The original poster asked redditors to name technologies and companies worth investing in, for future growth and profits. Responses among reddit users are usually open ended and vague, however several technologies were named, such as: biotechnology and genome sequencing, microchip production, micro nuclear reactors, solid state batteries, quantum computing and others.
+Also, several publicly traded companies were named and their trading ticker was provided.</description>
+    </item>
+    
     <item>
       <title>Interest Rates and Stock Market - do rising interest rates harm the stock market?</title>
       <link>https://www.codingeconomist.com/post/fed_fund_rates/</link>

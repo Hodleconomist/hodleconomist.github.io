@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWHRB83C4R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YWHRB83C4R');
+</script>
+
+<i class="dark hidden"></i>
+    <title>CodingEconomist | Using NLP and SEC filings to explore hitech companies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Analysis of new technology companies with data from SEC filings, using XBRL api, and with the help of Natural Language Processing for text processing, hitech">
+    <meta name="keywords" content="Company analysis, NLP, Natural Language Processing, Spacy.io, Python, New Technology, Hitech Companies" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="CodingEconomist | Using NLP and SEC filings to explore hitech companies" />
+    
+    
+        
+        <link rel="stylesheet" href="https://www.codingeconomist.com/css/styles.min.80a678bfed5c9bd9e1b305198f8985b92db9883d55e3ee73e580ded9d8bbff0a.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Analysis of new technology companies with data from SEC filings, using XBRL api, and with the help of Natural Language Processing for text processing, hitech">
+<meta property="og:site_name" content="CodingEconomist">
+<meta property="og:description" content="Analysis of new technology companies with data from SEC filings, using XBRL api, and with the help of Natural Language Processing for text processing, hitech">
+<meta property="og:url" content="https://www.codingeconomist.com/post/analysis_of_new_technology_companies/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://www.codingeconomist.com/post/analysis_of_new_technology_companies/">
+
+<meta name="twitter:description" content="Analysis of new technology companies with data from SEC filings, using XBRL api, and with the help of Natural Language Processing for text processing, hitech">
+<meta property="article:published_time" content="2022-03-20T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2022-03-20T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://www.codingeconomist.com/img/Analysis_of_new_tech_companies_from_sec_filings.jpg">
+<meta property="og:image:url" content="https://www.codingeconomist.com/img/Analysis_of_new_tech_companies_from_sec_filings.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://www.codingeconomist.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://www.codingeconomist.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Using NLP and SEC filings to explore hitech companies</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2022/03/20 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://www.codingeconomist.com/tags/analysis">analysis</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://www.codingeconomist.com/img/Analysis_of_new_tech_companies_from_sec_filings.jpg">
+        
+        <div class="content mt-5"><h2 id="analysis-of-hitech-companies">Analysis of hitech companies</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Recently a survey was conducted among participants of investing channel on reddit. The original poster asked redditors to name technologies and companies worth investing in, for future growth and profits. Responses among reddit users are usually open ended and vague, however several technologies were named, such as: biotechnology and genome sequencing, microchip production, micro nuclear reactors, solid state batteries, quantum computing and others.</p>
+<p>Also, several publicly traded companies were named and their trading ticker was provided. We decided to take a closer look at those companies, and see how can we quickly collect data on them.</p>
+
+</br>
+
+<h3 id="purpose">Purpose</h3>
+<p>The aim of this short study is to explore and gain basic understanding of the named entities from the survey with automated data collection and quick revenue analysis. Data in XBRL format is provided by the Securities and Exchange Commission (SEC), and allows to obtain relevant information on companies by means of an API. Stockrow web service also provides API to automatically download files in excel format, which can then be loaded into Python Pandas dataframe. Finally, the secondary goal of this study is to explore ways of information extraction from unstructured parts of company reports.
+If you would like to obtain a full study with detail fundamental analysis, please get in touch with us by filling in the contact form.</p>
+<h3 id="methodology">Methodology</h3>
+<p>In order to make this study as short as possible we decided to combine two sources of data - Stockrow and SEC. First a Python program was designed to collect financial quantitative data from Stockrow and qualitative data from SEC. SEC provides data in XBRL format, which is similar to XML. The obtained data has to be parsed and extracted in order to become human readable.
+What is XBRL? XBRL is the open international standard for digital business reporting, managed by a global not for profit consortium, XBRL International.
+The XBRL format provides a relatively simple way to extract structured data like financial positions from the income statement or a balance sheet. The problem arises when it comes to unstructured data of some parts of the SEC filing reports. Initial observation shows that each company uses different nodes for text block data. For example business description is reported in a XBRL text block as either:</p>
+<ul>
+<li>businessdescriptionandaccountingpoliciestextblock,</li>
+<li>organizationconsolidationandpresentationoffinancialstatement&hellip;..,</li>
+<li>or a company specific text block.</li>
+</ul>
+<p>For this reason, a different approach has to be taken. We decided to collect the whole blocks of unstructured data in one place, and use Natural Language Processing (NLP) methods to extract the relevant information. Python and Spacy.io framework was used for this purpose.</p>
+
+</br>
+
+<p>Fig 2. Source code of the study
+<script type="application/javascript" src="https://gist.github.com/Hodleconomist/4e818e1fe19ce4de9829e8dd76cde675.js"></script>
+
+Source: Own study</p>
+<h3 id="time-range">Time range</h3>
+<p>Only the most recent 10-k reports were used, separately for each company.</p>
+<h3 id="target-group">Target group</h3>
+<p>The following companies were investigated:</p>
+<p>
+</br>
+
+The table below shows the listed companies, tickers and their market cap as on the date of data collection.</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Company Name</th>
+<th>Ticker</th>
+<th>Market Cap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Nvidia</td>
+<td>NVDA</td>
+<td>552.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Intel Corporation</td>
+<td>INTC</td>
+<td>189.9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Advanced Micro Devices</td>
+<td>AMD</td>
+<td>169.0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Applied Materials</td>
+<td>AMAT</td>
+<td>109.22</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Lam Research Corporation</td>
+<td>LRCX</td>
+<td>67.43</td>
+</tr>
+<tr>
+<td>6</td>
+<td>KLA Corporation</td>
+<td>KLAC</td>
+<td>49.5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Amkor Technology</td>
+<td>AMKR</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Kulicke and Soffa Industries</td>
+<td>KLIC</td>
+<td>3.18</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ultra Clean Holdings</td>
+<td>UCTT</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Himax Technologies</td>
+<td>HIMX</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Energy Fuels</td>
+<td>UUUU</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Uranium Energy</td>
+<td>UEC</td>
+<td>1.4</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Meta Materials</td>
+<td>MMAT</td>
+<td>0.46</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Aehr Test Systems</td>
+<td>AEHR</td>
+<td>0.28</td>
+</tr>
+</tbody>
+</table>
+<p>Source: Own study</p>
+<h4 id="results">Results</h4>
+
+</br>
+
+<p>Fig. 1. Graph presenting revenue of Nvidia
+<img src="/img/1_sec_Nvidia.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>NVIDIA pioneered accelerated computing to help solve the most challenging computational problems. Since our original focus on PC graphics, we have expanded to several other large and important computationally intensive fields. Fueled by the sustained demand for exceptional 3D graphics and the scale of the gaming market, NVIDIA has leveraged its GPU architecture to create platforms for scientific computing, artificial intelligence, or AI, data science, autonomous vehicles, or AV, robotics, and augmented and virtual reality, or AR and VR. NVIDIA has a platform strategy, bringing together hardware and systems, software, algorithms and libraries, and services to create unique value for the markets we serve.</p>
+<p>Including GPUs and networking, NVIDIA powers over 70%, and 8 of the top 10, supercomputers on the global TOP500 list.
+The world’s leading cloud service providers and consumer internet companies use our GPUs to enable, accelerate or enrich the services they deliver to billions of end-users, including search, recommendations, social networking, online shopping, live video, translation, AI assistants, navigation, and cloud computing.
+A rapidly growing number of enterprises and startups across a broad range of industries use our GPUs and AI software to bring automation to the products and services they build.</p>
+
+</br>
+
+<p>Fig. 2. Graph presenting revenue of Intel Corporation
+<img src="/img/2_sec_Intel_Corporation.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Our product offerings provide end-to-end solutions, scaling from edge computing to 5G networks, the cloud, and the emerging fields of AI and autonomous driving, to serve an increasingly smart and connected world.
+At our core is the x86 computing ecosystem, which supports an extensive and deep universe of software applications, with billions of lines of code written and optimized for x86 CPUs. Beyond the CPU, we are delivering a growing family of xPU products, which encompass client and data center GPUs, IPUs, FPGAs, and other accelerators.
+The xPU approach recognizes that different workloads benefit from different computing architectures, and our broad portfolio helps meet our customers' increasingly diverse computing needs.</p>
+
+</br>
+
+<p>Fig. 3. Graph presenting revenue of Advanced Micro Devices
+<img src="/img/3_sec_Advanced_Micro_Devices.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Advanced Micro Devices, Inc. is a global semiconductor company.
+AMD’s products include x86 microprocessors (CPUs), as standalone devices or as incorporated into accelerated processing units (APUs), chipsets, discrete and integrated graphics processing units (GPUs), data center and professional GPUs, server and embedded processors, semi-custom SoC products, microprocessor and SoC development services and technology for game consoles.</p>
+
+</br>
+
+<p>Fig. 4. Graph presenting revenue of Applied Materials
+<img src="/img/4_sec_Applied_Materials.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Incorporated in 1967, Applied Materials, Inc. (Applied) is a Delaware corporation.
+A global company with a broad set of capabilities in materials engineering, Applied provides manufacturing equipment, services and software to the semiconductor, display and related industries.
+With its diverse technology capabilities, Applied delivers products and services that improve device performance, yield and cost.
+Applied’s customers include manufacturers of semiconductor chips, liquid crystal and organic light-emitting diode (OLED) displays, and other electronic devices.
+Applied operates in three reportable segments: Semiconductor Systems, Applied Global Services, and Display and Adjacent Markets.</p>
+
+</br>
+
+<p>Fig. 5. Graph presenting revenue of Lam Research Corporation
+<img src="/img/5_sec_Lam_Research_Corporation.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>We are a global supplier of innovative wafer fabrication equipment and services to the semiconductor industry.
+Our most significant customers during the fiscal years ending June 27, 2021, June 28, 2020, and June 30, 2019 included Intel Corporation; Kioxia Corporation; Micron Technology, Inc.; Samsung Electronics Company, Ltd.; SK hynix Inc.; Taiwan Semiconductor Manufacturing Company; and Yangtze Memory Technologies Co., Ltd.
+We also address processes for back-end wafer-level packaging (“WLP”), which is an alternative to traditional wire bonding and can offer a smaller form factor, increased interconnect speed and bandwidth, and lower power consumption, among other benefits.
+In addition, our products are well-suited for related markets that rely on semiconductor processes and require production-proven manufacturing capability, such as complementary metal-oxide-semiconductor image sensors (“CIS”) and micro-electromechanical systems (“MEMS”).</p>
+
+</br>
+
+<p>Fig. 6. Graph presenting revenue of KLA Corporation
+<img src="/img/6_sec_KLA_Corporation.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>KLA Corporation and its majority-owned subsidiaries (“KLA” or the “Company” and also referred to as “we,” “our,” “us,” or similar references) is a global leader in process control and a supplier of process-enabling solutions for a broad range of industries, including semiconductors, printed circuit boards (“PCB”) and displays.
+We provide solutions for manufacturing and testing wafers and reticles, integrated circuits (“IC” or “chip”), packaging, light-emitting diodes (“LED”), power devices, compound semiconductor devices, microelectromechanical systems (“MEMS”), data storage, PCBs, flat and flexible panel displays, and general materials research, as well as providing contracted and comprehensive installation and maintenance services across our installed base.
+KLA was formed as KLA-Tencor in April 1997 through the merger of KLA Instruments Corporation and Tencor Instruments, two long-time leaders in the semiconductor capital equipment industry that began operations in 1975 and 1976, respectively.</p>
+
+</br>
+
+<p>Fig. 7. Graph presenting revenue of Amkor Technology
+<img src="/img/7_sec_Amkor_Technology.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Amkor is one of the world’s leading providers of outsourced semiconductor packaging and test services.
+Amkor was a pioneer in the outsourcing of semiconductor packaging and test services, and over the years we have built a leading position by:
+Designing and developing innovative packaging and test technologies;</p>
+<p>Fabless semiconductor companies do not have factories.
+They focus exclusively on semiconductor design and outsource virtually every step of the manufacturing process, utilizing contract foundries to manufacture their semiconductors in wafer form and companies such as Amkor for their packaging and test needs. Some companies will engage a contract foundry to manage the complete semiconductor manufacturing process, and in turn, the contract foundry will outsource some of its packaging and test needs.</p>
+
+</br>
+
+<p>Fig. 8. Graph presenting revenue of Kulicke and Soffa Industries
+<img src="/img/8_sec_Kulicke_and_Soffa_Industries.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Kulicke and Soffa Industries, Inc. (&ldquo;we&rdquo;, the &ldquo;Company&rdquo; or &ldquo;K&amp;S&rdquo;) designs, manufactures and sells capital equipment and tools used to assemble semiconductor devices, including integrated circuits (“ICs”), high and low powered discrete devices, light-emitting diodes (“LEDs”), and power modules.
+In addition, we have a portfolio of equipment that is used to assemble components onto electronic circuit boards.
+We also service, maintain, repair and upgrade our equipment, and sell consumable aftermarket tools for our and our peer companies' equipment.</p>
+
+</br>
+
+<p>Fig. 9. Graph presenting revenue of Ultra Clean Holdings
+<img src="/img/9_sec_Ultra_Clean_Holdings.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Ultra Clean Holdings, Inc., (“UCT”, the “Company” or “We”) is a leading developer and supplier of critical subsystems, components, parts, and ultra-high purity cleaning and analytical services primarily for the semiconductor industry.
+UCT offers its customers an integrated outsourced solution for major subassemblies, improved design-to-delivery cycle times, design for manufacturability, prototyping and part and component manufacturing, as well as tool chamber parts cleaning and coating, and micro-contamination analytical services.</p>
+
+</br>
+
+<p>Fig. 10. Graph presenting revenue of Himax Technologies
+<img src="/img/10_sec_Himax_Technologies.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>The Company does not report 10-K</p>
+
+</br>
+
+<p>Fig. 11. Graph presenting revenue of Energy Fuels
+<img src="/img/11_sec_Energy_Fuels.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>All of the Company’s assets, management and employees are located in the western United States.
+The Company’s assets, which include uranium, vanadium and REE extraction, recovery, permitting, evaluation and exploration assets, are held directly and indirectly, as the case may be, by the Company’s wholly owned subsidiaries Energy Fuels Holdings Corp. (“EF Holdings”) and Strathmore Minerals Corp. (“Strathmore”).
+Energy Fuels is engaged in conventional and in situ recovery (“ISR”) uranium extraction and recovery, along with the exploration, permitting, and evaluation of uranium properties in the United States.
+The Company also extracts and recovers vanadium from certain of its uranium projects, as market conditions warrant.
+In 2021, the Company commenced its ramp-up to commercial production of rare earth element (“REE”) carbonate (“RE Carbonate”), another byproduct of the uranium recovery process, and is evaluating the potential to recover isotopes from its existing process streams needed for emerging targeted alpha therapy (“TAT”) cancer therapeutics.</p>
+<p>In addition, Energy Fuels recovers uranium from other uranium-bearing materials not derived from conventional material, referred to as “Alternate Feed Materials,” at its Mill, thereby recycling materials back into the market that would otherwise be lost to direct disposal.
+With its uranium, vanadium, REE and potentially radioisotope production, the Mill is quickly becoming a critical minerals hub for the U.S. Uranium, which is the fuel for carbon-free, emission-free baseload nuclear power, is one of the cleanest forms of energy in the world.
+The REEs we are now producing are used for the manufacture of permanent magnets for electric vehicles, wind turbines and other clean energy and modern technologies, and the radioisotopes we are evaluating for recovery from our REE and uranium processing streams have the potential to provide the isotopes needed for emerging TAT cancer-fighting therapeutics.</p>
+
+</br>
+
+<p>Fig. 12. Graph presenting revenue of Uranium Energy
+<img src="/img/12_sec_Uranium_Energy.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Uranium Energy Corp. was incorporated under the laws of the State of Nevada on May 16, 2003 under the name Carlin Gold Inc.
+During 2004 we changed our business operations and focus from precious metals exploration to uranium exploration in the United States.
+On January 24, 2005, we completed a reverse stock split of our common stock on the basis of one share for each two outstanding shares and amended our Articles of Incorporation to change our name to Uranium Energy Corp.
+Our fully-licensed and 100%-owned Hobson Processing Facility forms the basis for our regional operating strategy in the State of Texas, specifically in the South Texas Uranium Belt, where we utilize ISR mining.
+We utilize a “hub-and-spoke” strategy whereby the Hobson Processing Facility acts as the central processing site (the “hub”) for our Palangana Mine and future satellite uranium mining activities, such as our Burke Hollow and Goliad Projects, located within the South Texas Uranium Belt (the “spokes”).
+The Hobson Processing Facility has a physical capacity to process uranium-loaded resins up to a total of two million pounds of U3O8 annually and is licensed to process up to one million pounds of U3O8 annually. The Company is investing in building the next generation of low-cost and environmentally friendly uranium projects that will be competitive on a global basis.</p>
+
+</br>
+
+<p>Fig. 13. Graph presenting revenue of Meta Materials
+<img src="/img/13_sec_Meta_Materials.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Meta Materials Inc. (the “Company” or “META” or “Resulting Issuer”) is a developer of high-performance functional materials and nanocomposites.
+The Company’s registered office is located at 85 Swanson Road, Boxborough, Massachusetts 01719, and its principal executive office is located at 1 Research Drive, Halifax, Nova Scotia, Canada.
+The Company has generated a portfolio of intellectual property and is now moving toward commercializing products at a performance and price point combination that has the potential to be disruptive in multiple market verticals.
+The Company’s platform technology includes holography, lithography, and medical wireless sensing.
+The underlying approach that powers the Company’s platform technologies comprises advanced materials, metamaterials and functional surfaces.
+These materials include structures that are patterned in ways that manipulate light, heat, and electromagnetic waves in unusual ways.
+The Company’s advanced structural design technologies and scalable manufacturing methods provide a path to broad commercial opportunities in aerospace and defense, automotive, energy, healthcare, consumer electronics, and data transmission.
+The Company has many product concepts currently in various stages of development with multiple potential customers in diverse market verticals.
+The Company’s business model is to co-develop innovative products or applications with industry leaders that add value.</p>
+
+</br>
+
+<p>Fig. 14. Graph presenting revenue of Aehr Test Systems
+<img src="/img/14_sec_Aehr_Test_Systems.jpg" alt="Clusters found by HDBSCAN">
+Source: Own study</p>
+<p>Aehr Test was incorporated in the state of California on May 25, 1977.
+We develop, manufacture and sell solutions that are designed to reduce the cost of testing and to perform reliability screening and stress testing, burn-in or cycling, of homogeneous and heterogenous logic and memory semiconductor integrated circuits, sensors, power and optical devices.
+These solutions can be used to simultaneously perform parallel testing and burn-in of packaged devices, singulated bare die or semiconductor devices while still in wafer form.
+The Company’s semiconductor test and reliability qualification solutions address multiple test and burn-in segments including silicon carbide devices for electric vehicles, silicon photonics markets that include data center infrastructure and worldwide 5G infrastructure, 2D/3D sensor markets related to consumer electronics and automotive applications, and the data storage and memory markets.</p>
+
+</br>
+
+<p>As can be seen from the above charts, most of the listed companies had rising revenues.
+First group which included 10 out of 14 companies had raising revenues for two consecutive periods. The second group which included 2 companies had rising revenues in one period out of the last consecutive two. Only the last group which also included 2 companies had falling revenues for the last two periods.
+This indicates that redditors chose rather solid high tech investments for their portfolios.</p>
+<p>Retrieving data from Stockrow was a breeze. Apart from the paid API, the service provides an easy way to download company data as excel files which can later be stored and operated upon as a Python Pandas dataframe. For this study, both income statement and balance sheet positions for several years were downloaded and combined into a single dataframe. From there a revenue position for each year was obtained and presented as a graph.</p>
+<p>Retrieving data from SEC EDGAR presents a more challenging task. Most financial positions from the income statement or balance sheet are easy to retreive as they have a clear name in XBRL language. However, parts of text which represent unstructured data, such as company descriptions or other important footnote disclosure are not assigned consistently to XBRL nodes. Various companies seem to assign the same text to different nodes, which makes it difficult not only to retrieve the information but also to asses whether such information was made available at all. Moreover, sometimes such information can be spread around and assigned to several different nodes. Due to this inconsistency in reporting, we have decided to take a different approach.</p>
+<p>We used Natural Language Processing framework Spacy.io to extract the relevant information. For this purpose blocks of text from financial reports are first downloaded as simple text and tokenized. Next rule-base matching for required topics was applied. Since we only wanted to obtain company description, it was decided that the search will focus on tokenized company names. However, in the course of the study it turned out that it wasn&rsquo;t enough. A lot of text blocks with company description was missed, as some companies used &ldquo;We&rdquo; to describe its operations, others used &ldquo;The company&rdquo;. After accounting for those changes, we managed to come up with sufficiently good description for operations of the listed entities using Spacy.io rule-based matching.</p>
+
+</br>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>Automation of analysis with Python and its data mining ecosystem, makes it fun and simple to quickly gain basic understanding of many companies in short time frame. By using Stockrow&rsquo;s API we could quickly assess the state of finances of an analysed entity. By using Natural Language Processing, we were able to extract relevant background information from financial reports.</p>
+<p>This approach can further be extended to facilitate obtaining information on other topics, like company investments, technology, research and development, acquisitions in order to gain further insights into the inner workings of an entity.</p>
+<p>In the course of the study, it became apparent that search for company description or other unstructured data with XBRL nodes cannot be relied upon. The names of those nodes are not used in consistent manner. By using SEC XBRL, it is difficult to asses if the information we are looking for was made available or whether it was split and placed under different node tags. For this reason we recommend using either NLP for text tokenization and extraction or even just regex, for simple text extraction.</p>
+<blockquote>
+<p>Spacy.io NLP framework was used to extract information from unstructured data</p>
+</blockquote>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://www.codingeconomist.com/categories/analysis">analysis</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://www.codingeconomist.com/post/fed_fund_rates/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Interest Rates and Stock Market - do rising interest rates harm the stock market?
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://www.codingeconomist.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/02">2022/02 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/03">2022/03 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/axie_infinity_correlation/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Correlation of selected crypto companies with Axie Infinity</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/10/27</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/analysis_of_new_technology_companies/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Using NLP and SEC filings to explore hitech companies</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/03/20</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/what_is_dao/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">What is DAO</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/07/05</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/cardano_vs_polkadot/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Differences between Cardano and Polkadot blockchains</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/11/08</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://www.codingeconomist.com" class="hover:text-gray-500">CodingEconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

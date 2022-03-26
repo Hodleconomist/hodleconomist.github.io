@@ -13,10 +13,8 @@
       <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.codingeconomist.com/post/ethereum_price_vs_gas_price/</guid>
-      <description>Comparison of Ether and Ethereum Gas prices Fig. 1. Graph presenting comparison of Ether and Ethereum gas prices - short term Source: Own study
- Fig. 2. Graph presenting comparison of Ether and Ethereum gas prices - long term Source: Own study
-Recent years have seen increase in Ethereum gas prices compared to early years of the Ethereum protocol history.
- Fig. 3. Graph presenting the biggest consumers of Ethereum gas Source: Etherscan.</description>
+      <description>Comparison of Ether and Ethereum Gas prices Objective The aim of this article was to compare the prices of Ether and Ethereum Gas. Additionally an attempt was made at answering a question of whether Ethereum network is gaining more utility.
+Methodology The main method used in this article is visual presentation and discussion. A program was written using python and jupyter lab environment to collect the relevant data and project it onto a graph.</description>
     </item>
     
     <item>

@@ -6,7 +6,18 @@
     <description>Recent content in Posts on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 26 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The problem with Intel&#39;s SEC filings and NLP</title>
+      <link>https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/</link>
+      <pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/</guid>
+      <description>The Problem with Intel&amp;rsquo;s SEC filings and Natural Language Processing Objective The aim of this article was to show how chipmaker Intel Corporation makes use of their own 10-K form which differs substantially from the SEC 10-K, making automation of document reading much more difficult for analysts.
+Methodology The main method used in this article is visual presentation and discussion.
+Results In its latest 10-K SEC filing, Intel Corporation states as follows:</description>
+    </item>
+    
     <item>
       <title>Ether price vs Ethereum Gas price - more utility in the Ethereum network?</title>
       <link>https://www.codingeconomist.com/post/ethereum_price_vs_gas_price/</link>

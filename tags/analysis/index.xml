@@ -6,7 +6,17 @@
     <description>Recent content in analysis on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/tags/analysis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/tags/analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading Nvidia financial reports with the help of Natural Language Processing - Part I</title>
+      <link>https://www.codingeconomist.com/post/reading_nvidia_financial_reports/</link>
+      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/reading_nvidia_financial_reports/</guid>
+      <description>How to analyze Nvidia financial report - Part I Introduction Reading financial reports of any company usually takes a lot of time. Even more time is required to compare financial reports across different years. According to some analysts, it may take months or even years of digging into company reports in order to get well acquainted with the company, and get a good understanding of its operations.
+This is part one of a broader series of articles which will present the use of Natural Language Processing techniques for company financial reports analysis.</description>
+    </item>
+    
     <item>
       <title>The problem with Intel&#39;s SEC filings and NLP</title>
       <link>https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/</link>

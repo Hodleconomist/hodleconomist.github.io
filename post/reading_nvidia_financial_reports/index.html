@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWHRB83C4R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YWHRB83C4R');
+</script>
+
+<i class="dark hidden"></i>
+    <title>CodingEconomist | Reading Nvidia financial reports with the help of Natural Language Processing - Part I</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Analyzing Nvidia financial reports with Natural Language Processing">
+    <meta name="keywords" content="Nvidia, financial reports, SEC filings, Analysis, Securities and Exchange Commission, Financial Reports, 10-K reports, tokenizaiton, NLP, Natural Language Processing" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="CodingEconomist | Reading Nvidia financial reports with the help of Natural Language Processing - Part I" />
+    
+    
+        
+        <link rel="stylesheet" href="https://www.codingeconomist.com/css/styles.min.fd6d68c60195fe0fed7278019eb796b67a6469bf22f42486ee94639c46966378.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Analyzing Nvidia financial reports with Natural Language Processing">
+<meta property="og:site_name" content="CodingEconomist">
+<meta property="og:description" content="Analyzing Nvidia financial reports with Natural Language Processing">
+<meta property="og:url" content="https://www.codingeconomist.com/post/reading_nvidia_financial_reports/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://www.codingeconomist.com/post/reading_nvidia_financial_reports/">
+
+<meta name="twitter:description" content="Analyzing Nvidia financial reports with Natural Language Processing">
+<meta property="article:published_time" content="2022-04-08T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2022-04-08T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://www.codingeconomist.com/img/Nvidia_word_count.jpg">
+<meta property="og:image:url" content="https://www.codingeconomist.com/img/Nvidia_word_count.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://www.codingeconomist.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://www.codingeconomist.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Reading Nvidia financial reports with the help of Natural Language Processing - Part I</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2022/04/08 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://www.codingeconomist.com/tags/analysis">analysis</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://www.codingeconomist.com/img/Nvidia_word_count.jpg">
+        
+        <div class="content mt-5"><h2 id="how-to-analyze-nvidia-financial-report---part-i">How to analyze Nvidia financial report - Part I</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Reading financial reports of any company usually takes a lot of time. Even more time is required to compare financial reports across different years.
+According to some analysts, it may take months or even years of digging into company reports in order to get well acquainted with the company, and get a good understanding of its operations.</p>
+<p>This is part one of a broader series of articles which will present the use of Natural Language Processing techniques for company financial reports analysis.</p>
+<h3 id="objective">Objective</h3>
+<p>The aim of this short article is to employ simple Natural Language Processing (NLP) methods to tokenize the text and count the most common words used in financial reporting of Nvidia company across several years.</p>
+<p>The assumption is that the more frequently a term is used, reflects the importance of that term for the writer. Thus, the more Nvidia uses certain terms in financial reports the more attention the Company wants to draw to them.</p>
+<h3 id="methodology">Methodology</h3>
+<p>After extracting Nvidia&rsquo;s financial reports from SEC EDGAR repository, a simple NLP technique was used such as word tokenization, the next step was to calculate word frequency from the relevant parts of the report. This analysis focuses on Item 1 and Item 7 of  Nvidia&rsquo;s SEC filings, which includes Business description and Management’s Discussion and Analysis of Financial Condition and Results of Operations.
+A python program was written in order to automate the analysis. In the search for most common words, English stop words and other irrelevant vocabulary were eliminated from the corpora to simplify the text.</p>
+
+</br>
+
+<p>Fig. 1. Python source code for Nvidia financial report word count
+<img src="/img/Nvidia_1_2022-04-10_21-56.png" alt="Source code for NLP word count of Nvidia&rsquo;s financial report part 1">
+<img src="/img/Nvidia_2_2022-04-10_21-56.png" alt="Source code for NLP word count of Nvidia&rsquo;s financial report part 2">
+<img src="/img/Nvidia_3_2022-04-10_21-56.png" alt="Source code for NLP word count of Nvidia&rsquo;s financial report part 3">
+<img src="/img/Nvidia_4_2022-04-10_21-56.png" alt="Source code for NLP word count of Nvidia&rsquo;s financial report part 4">
+<img src="/img/Nvidia_5_2022-04-10_21-56.png" alt="Source code for NLP word count of Nvidia&rsquo;s financial report part 5">
+Source: Own study</p>
+
+</br>
+
+<h3 id="time-period">Time period</h3>
+<p>Financial reports between 2011 through 2022 were analyzed.</p>
+<h3 id="results">Results</h3>
+<p>The results of the study show what Nvidia was trying to convene to the public by placing more stress on certain terms over the other. As can be seen in the table below in 2022 the most common word used in Nvidia&rsquo;s financial report was &lsquo;software&rsquo;, which was mentioned 50 times. The second most widely used term was &lsquo;AI&rsquo; which was mentioned 44. In 2021, the most frequent word used in the report was &lsquo;computing&rsquo; which was mentioned 43 times and &lsquo;AI&rsquo;, 40 times. In subsequent years from 2020 to 2018, the term &lsquo;AI&rsquo; was always on the first position as the most common word used in the reports. In time period between 2017 and 2011, with a single exception for 2013, the term &lsquo;product&rsquo; was always on the first position as the most frequent word.</p>
+
+</br>
+
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>word 1</th>
+<th>word 2</th>
+<th>word 3</th>
+<th>word 4</th>
+<th>word 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td>software,50</td>
+<td>NVIDIA,49</td>
+<td>AI,44</td>
+<td>computing,38</td>
+<td>products,36</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>computing,43</td>
+<td>AI,40</td>
+<td>NVIDIA,38</td>
+<td>products,38</td>
+<td>software,32</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>AI,44</td>
+<td>NVIDIA,39</td>
+<td>computing,38</td>
+<td>GPUs,38</td>
+<td>products,36</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>AI,42</td>
+<td>NVIDIA,37</td>
+<td>computing,37</td>
+<td>GPUs,35</td>
+<td>products,35</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>AI,43</td>
+<td>GPUs,38</td>
+<td>products,36</td>
+<td>computing,33</td>
+<td>GPU,28</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>products,43</td>
+<td>computing,38</td>
+<td>AI,36</td>
+<td>GPUs,32</td>
+<td>gaming,23</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>products,48</td>
+<td>computing,36</td>
+<td>gaming,22</td>
+<td>visual,21</td>
+<td>GPUs,20</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>products,47</td>
+<td>computing,35</td>
+<td>visual,21</td>
+<td>GPUs,21</td>
+<td>graphics,20</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>products,52</td>
+<td>computing,30</td>
+<td>Tegra,25</td>
+<td>design,24</td>
+<td>GPUs,22</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>computing,50</td>
+<td>products,48</td>
+<td>graphics,36</td>
+<td>Tegra,33</td>
+<td>visual,28</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>products,20</td>
+<td>Quadro,13</td>
+<td>statements,12</td>
+<td>NVIDIA,12</td>
+<td>mobile,12</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>products,82</td>
+<td>,54</td>
+<td>performance,36</td>
+<td>graphics,29</td>
+<td>fiscal,27</td>
+</tr>
+</tbody>
+</table>
+
+</br>
+
+<p>Comparing the most common words used across several years, we can clearly see how Nvidia management&rsquo;s thinking has evolved over the years.  <b>Five years ago the stress was being put on 'products' and 'computing' terms, now it is mostly 'software' and 'AI'</b>.
+It becomes clear that Nvidia wants to be perceived as a leader in &lsquo;AI&rsquo;. Not only hardware producer, but also software solutions provider, which can also be sold in a SaaS model thus providing more scalability for the company then just hardware.</p>
+
+</br>
+
+<p>Fig. 2. Nvidia SEC filings Item 1 and 7 - most common word count - year 2022
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2022.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 3. Nvidia SEC filings Item 1 and 7 - most common word count - year 2021
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2021.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 4. Nvidia SEC filings Item 1 and 7 - most common word count - year 2020
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2020.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 5. Nvidia SEC filings Item 1 and 7 - most common word count - year 2019
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2019.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 6. Nvidia SEC filings Item 1 and 7 - most common word count - year 2018
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2018.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 7. Nvidia SEC filings Item 1 and 7 - most common word count - year 2017
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2017.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 8. Nvidia SEC filings Item 1 and 7 - most common word count - year 2016
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2016.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 9. Nvidia SEC filings Item 1 and 7 - most common word count - year 2015
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2015.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 10. Nvidia SEC filings Item 1 and 7 - most common word count - year 2014
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2014.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 11. Nvidia SEC filings Item 1 and 7 - most common word count - year 2013
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2013.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 12. Nvidia SEC filings Item 1 and 7 - most common word count - year 2012
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2012.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Fig. 13. Nvidia SEC filings Item 1 and 7 - most common word count - year 2011
+<img src="/img/Nvidia_SEC_filings_most_common_word_count_year_2011.jpg" alt="">
+Source: Own study</p>
+
+</br>
+
+<p>Looking at the graphs, some interesting observations can be made. From the year 2011 to 2017 the graph has an elbow like shape. In that case, around 3 to 4 most common words dominate the text and than the rest of the graph slowly levels off.</p>
+<p>Beyond year 2017, the word frequency is more evenly downward sloping without sudden drops, encompassing many more words with high occurrances than in the previous years.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>This short study of word frequency count from Nvidia financial reports for years 2022 - 2011 shows that the narrative of the company has gradually been shifting away from products and graphics cards for gamers, towards AI applications and software provision.</p>
+<blockquote>
+<p>According to the word frequency analysis, the management of Nvidia wants to put increasing emphasis on software provision rather than being viewed as a hardware developer alone.</p>
+</blockquote>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://www.codingeconomist.com/categories/analysis">analysis</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> The problem with Intel&#39;s SEC filings and NLP
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://www.codingeconomist.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/02">2022/02 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/03">2022/03 (3)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/04">2022/04 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/problem_with_analyzing_intel_sec_filings/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">The problem with Intel&#39;s SEC filings and NLP</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/03/29</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/hdbscan_analysis_crypto/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/12/07</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/fed_fund_rates/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Interest Rates and Stock Market - do rising interest rates harm the stock market?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/02/20</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/ethereum_price_vs_gas_price/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Ether price vs Ethereum Gas price - more utility in the Ethereum network?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/03/26</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://www.codingeconomist.com" class="hover:text-gray-500">CodingEconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

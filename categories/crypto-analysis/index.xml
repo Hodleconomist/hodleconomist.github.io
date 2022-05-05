@@ -1,44 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on CodingEconomist</title>
-    <link>https://www.codingeconomist.com/post/</link>
-    <description>Recent content in Posts on CodingEconomist</description>
+    <title>crypto analysis on CodingEconomist</title>
+    <link>https://www.codingeconomist.com/categories/crypto-analysis/</link>
+    <description>Recent content in crypto analysis on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Reading Nvidia SEC filings with the help of Natural Language Processing - Part II</title>
-      <link>https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/</link>
-      <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/</guid>
-      <description>How to analyze Nvidia SEC filings - Part II Introduction This series of articles is made of three parts. In part I of this series we explored frequency word count for the most common words in Nvidia SEC filings.
-In this part, which is part II, we are going a step further, and try to explore the most important sentences from the company&amp;rsquo;s SEC filings.
-The last part III of the series will explore comparison of SEC filing statements across different time periods and elimination of repeating sentences in order to narrow down the research.</description>
-    </item>
-    
-    <item>
-      <title>Reading Nvidia financial reports with the help of Natural Language Processing - Part I</title>
-      <link>https://www.codingeconomist.com/post/reading_nvidia_financial_reports/</link>
-      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.codingeconomist.com/post/reading_nvidia_financial_reports/</guid>
-      <description>How to analyze Nvidia financial report - Part I Introduction Reading financial reports of any company usually takes a lot of time. Even more time is required to compare financial reports across different years. According to some analysts, it may take months or even years of digging into company reports in order to get well acquainted with the company, and get a good understanding of its operations.
-This is part one of a broader series of articles which will present the use of Natural Language Processing techniques for company financial reports analysis.</description>
-    </item>
-    
-    <item>
-      <title>The problem with Intel&#39;s SEC filings and NLP</title>
-      <link>https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/</link>
-      <pubDate>Tue, 29 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.codingeconomist.com/post/problem_with_analyzing_intel_sec_filings/</guid>
-      <description>The Problem with Intel&amp;rsquo;s SEC filings and Natural Language Processing Objective The aim of this article was to show how chipmaker Intel Corporation makes use of their own 10-K form which differs substantially from the SEC 10-K, making automation of document reading much more difficult for analysts.
-Methodology The main method used in this article is visual presentation and discussion.
-Results In its latest 10-K SEC filing, Intel Corporation states as follows:</description>
-    </item>
-    
+    <lastBuildDate>Sat, 26 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/categories/crypto-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ether price vs Ethereum Gas price - more utility in the Ethereum network?</title>
       <link>https://www.codingeconomist.com/post/ethereum_price_vs_gas_price/</link>
@@ -47,25 +15,6 @@ Results In its latest 10-K SEC filing, Intel Corporation states as follows:</des
       <guid>https://www.codingeconomist.com/post/ethereum_price_vs_gas_price/</guid>
       <description>Comparison of Ether and Ethereum Gas prices Objective The aim of this article was to compare the prices of Ether and Ethereum Gas. Additionally an attempt was made at answering a question of whether Ethereum network is gaining more utility.
 Methodology The main method used in this article is visual presentation and discussion. A program was written using python and jupyter lab environment to collect the relevant data and project it onto a graph.</description>
-    </item>
-    
-    <item>
-      <title>Using NLP and SEC filings to explore hitech companies</title>
-      <link>https://www.codingeconomist.com/post/analysis_of_new_technology_companies/</link>
-      <pubDate>Sun, 20 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.codingeconomist.com/post/analysis_of_new_technology_companies/</guid>
-      <description>Analysis of hitech companies Introduction Recently a survey was conducted among participants of investing channel on reddit. The original poster asked redditors to name technologies and companies worth investing in, for future growth and profits. Responses among reddit users are usually open ended and vague, however several technologies were named, such as: biotechnology and genome sequencing, microchip production, micro nuclear reactors, solid state batteries, quantum computing and others.
-Also, several publicly traded companies were named and their trading ticker was provided.</description>
-    </item>
-    
-    <item>
-      <title>Interest Rates and Stock Market - do rising interest rates harm the stock market?</title>
-      <link>https://www.codingeconomist.com/post/fed_fund_rates/</link>
-      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.codingeconomist.com/post/fed_fund_rates/</guid>
-      <description>Are rising interest rates bad for the stock market? Introduction On January 10th, Federal Reserve Chairman Powell spoke at the hearing, saying that the economy after the epidemic may be different from the previous expansion, the US labor market is strong, and policies must be considered forward-looking, and tools will be used to support the economy and employment. market. In fact, since the Fed released the early signal of raising interest rates last week, the market&amp;rsquo;s expectations for interest rate hikes in March have begun to rise sharply.</description>
     </item>
     
     <item>

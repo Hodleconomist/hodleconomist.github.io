@@ -6,7 +6,18 @@
     <description>Recent content in analysis on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/categories/analysis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/categories/analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading Nvidia SEC filings with the help of Natural Language Processing - Part II</title>
+      <link>https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/</link>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/</guid>
+      <description>How to analyze Nvidia SEC filings - Part II Introduction This series of articles is made of three parts. In part I of this series we explored frequency word count for the most common words in Nvidia SEC filings.
+In this part, which is part II, we are going a step further, and try to explore the most important sentences from the company&amp;rsquo;s SEC filings.
+The last part III of the series will explore comparison of SEC filing statements across different time periods and elimination of repeating sentences in order to narrow down the research.</description>
+    </item>
+    
     <item>
       <title>Reading Nvidia financial reports with the help of Natural Language Processing - Part I</title>
       <link>https://www.codingeconomist.com/post/reading_nvidia_financial_reports/</link>

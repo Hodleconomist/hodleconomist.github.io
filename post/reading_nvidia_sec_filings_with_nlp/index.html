@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+<head>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWHRB83C4R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YWHRB83C4R');
+</script>
+
+<i class="dark hidden"></i>
+    <title>CodingEconomist | Reading Nvidia SEC filings with the help of Natural Language Processing - Part II</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    
+    <meta name="description" content="Analyzing Nvidia SEC filings with Natural Language Processing">
+    <meta name="keywords" content="Nvidia, financial reports, SEC filings, Analysis, Securities and Exchange Commission, Financial Reports, 10-K reports, tokenizaiton, NLP, Natural Language Processing" />
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="CodingEconomist | Reading Nvidia SEC filings with the help of Natural Language Processing - Part II" />
+    
+    
+        
+        <link rel="stylesheet" href="https://www.codingeconomist.com/css/styles.min.fd6d68c60195fe0fed7278019eb796b67a6469bf22f42486ee94639c46966378.css">
+    
+    <link href="/css/blonde.min.css" rel="stylesheet" type="text/css" media="print"
+        onload="this.media='all'">
+    
+
+
+
+<meta name="description" content="Analyzing Nvidia SEC filings with Natural Language Processing">
+<meta property="og:site_name" content="CodingEconomist">
+<meta property="og:description" content="Analyzing Nvidia SEC filings with Natural Language Processing">
+<meta property="og:url" content="https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+
+<link rel="canonical" href="https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_nlp/">
+
+<meta name="twitter:description" content="Analyzing Nvidia SEC filings with Natural Language Processing">
+<meta property="article:published_time" content="2022-05-01T00:00:00&#43;00:00">
+<meta property="article:updated_time" content="2022-05-01T00:00:00&#43;00:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://www.codingeconomist.com/img/Nvidia_20_Main_Theme.jpg">
+<meta property="og:image:url" content="https://www.codingeconomist.com/img/Nvidia_20_Main_Theme.jpg">
+    
+
+    
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="preloader"></div>
+<script>
+    setTimeout(function() {
+      $('#preloader').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }, 100);
+</script>
+
+
+<style>
+    .active {
+        display: block;
+    }
+    #preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #333 url('/img/preloader.gif') no-repeat center center;
+    }
+</style><body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800"><div class="bg-gray-800">
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+            <div class="flex items-center flex-no-shrink bg-gray-800 text-white mr-6">
+
+                <span class="" img=""></span>
+                <a href="https://www.codingeconomist.com"><span class="font-semibold text-2xl tracking-tight"></span><img src="https://www.codingeconomist.com/img/logo.png" alt="Hodleconomist" /></span></a>
+            </div>
+            <div class="flex md:hidden">
+                <div class="py-2">
+                    <button onclick="toggleDarkMode()" class="focus:outline-none mr-1"><i id="icon"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg text-white"
+                            aria-label="Darkmode Toggle Button"></i></button>
+                    <span class="text-gray-300">|</span>
+                </div>
+                <button id="hamburgerbtn" class="flex items-center px-3 py-1 text-gray-300 hover:text-white">
+                    <span class="icon-menu text-2xl" aria-label="Hamburger Button"></span>
+                </button>
+            </div>
+            <div class="hidden w-full md:flex md:flex-row sm:items-center md:w-auto" id="mobileMenu">
+                <div class="text-sm lg:flex-grow">
+                </div>
+                <div class="navmenu">
+                    
+                    <a href="/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Home
+                    </a>
+                    
+                    <a href="/about/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        About
+                    </a>
+                    
+                    <a href="/contact/"
+                        class="no-underline block mt-4 sm:inline-block sm:mt-0 text-gray-400 hover:text-white mr-4">
+                        Contact
+                    </a>
+                    
+                </div>
+                <div class="text-gray-400 invisible md:visible">
+                    <span>|</span>
+                    <button onclick="toggleDarkMode()" class="focus:outline-none"><i id="icon2"
+                            class="icon-moon inline-flex align-middle leading-normal text-lg ml-2"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    let hamburger = document.getElementById('hamburgerbtn');
+
+    let mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+    });
+</script><div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+<div class="grid grid-cols-3 gap-4">
+    <div class="bg-white col-span-3 lg:col-span-2 p-5 dark:bg-warmgray-900 dark:text-white">
+        <h1 class="title text-4xl">Reading Nvidia SEC filings with the help of Natural Language Processing - Part II</h1>
+        <aside id="meta">
+            <div>
+                <section>
+                    <h4 id="date"><span class="icon-access_time mr-1"></span>2022/05/01 </h4>
+                </section>
+                
+                <div id="tags">
+                    <span class="icon-local_offer mr-1"></span>
+                    
+                    <a href="https://www.codingeconomist.com/tags/analysis">analysis</a> |
+                    
+                </div>
+                
+            </div>
+        </aside>
+        
+        <img class="py-4" src="https://www.codingeconomist.com/img/Nvidia_20_Main_Theme.jpg">
+        
+        <div class="content mt-5"><h2 id="how-to-analyze-nvidia-sec-filings---part-ii">How to analyze Nvidia SEC filings - Part II</h2>
+<h3 id="introduction">Introduction</h3>
+<p>This series of articles is made of three parts. In <b>part I</b> of this series we explored frequency word count for the most common words in Nvidia SEC filings.</p>
+<p>In this part, which is <b>part II</b>, we are going a step further, and try to explore the most important sentences from the company&rsquo;s SEC filings.</p>
+<p>The last <b>part III</b> of the series will explore comparison of SEC filing statements across different time periods and elimination of repeating sentences in order to narrow down the research.</p>
+<h3 id="objective">Objective</h3>
+<p>The aim of this article is to employ Natural Language Processing (NLP) methods to tokenize the text and extract all sentences containing certain phrases which should speed up the analysis considerably.</p>
+<h3 id="methodology">Methodology</h3>
+<p>After extracting Nvidia&rsquo;s financial reports from SEC EDGAR repository, we proceeded with word tokenization of the text. The next step was to prepare specific phrases of interest to look for. In the final step, we extracted all sentences containing the required phrases and keywords.
+A python program was written in order to automate the analysis. Only Item 1 and Item 7 of the Nvidia SEC filings were explored.
+If you would like to obtain a report where the whole 10-K report is taken into account, please get in touch with us.</p>
+<p>After several discussions and brainstorms with other analysts working with hi-tech companies, we have chosen the following phrases and keywords to be of relevance to the industry:</p>
+<p>&lsquo;research and development&rsquo;,
+&lsquo;merger and acquisitions&rsquo;,
+&lsquo;customer&rsquo;,
+&lsquo;competition&rsquo;,
+&lsquo;innovation&rsquo;,
+&lsquo;product portfolio&rsquo;,
+&lsquo;patents&rsquo;,
+&lsquo;pricing&rsquo;,
+&lsquo;market share&rsquo;,
+&lsquo;suppliers&rsquo;,
+&lsquo;partners&rsquo;,
+&lsquo;technology&rsquo;,&lsquo;technological&rsquo;,
+&lsquo;technics&rsquo;, &lsquo;engineering&rsquo;,
+&lsquo;operations&rsquo;,
+&lsquo;collaborative arrangements&rsquo;</p>
+
+</br>
+
+<p>Fig. 1. Python source code for Nvidia financial report analysis
+<img src="/img/Nvidia_20_Code_1.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_2.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_3.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_4.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_5.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_6.jpg" alt="Source code for NLP sentence analysis">
+<img src="/img/Nvidia_20_Code_7.jpg" alt="Source code for NLP sentence analysis">
+Source: Own study</p>
+
+</br>
+
+<h3 id="time-period">Time period</h3>
+<p>Nvidia&rsquo;s financial report ending 2022 was analyzed.</p>
+<h3 id="results">Results</h3>
+<p>For Nvidia 10-K SEC filings ending 2022 we obtained the following number of sentences for each phrase or keyword:</p>
+
+</br>
+
+<table>
+<thead>
+<tr>
+<th>Phrase or keyword</th>
+<th>number of sentences</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lsquo;research and development&rsquo;</td>
+<td>15</td>
+</tr>
+<tr>
+<td>&lsquo;merger and acquisitions&rsquo;</td>
+<td>3</td>
+</tr>
+<tr>
+<td>&lsquo;customer&rsquo;</td>
+<td>14</td>
+</tr>
+<tr>
+<td>&lsquo;competition&rsquo;</td>
+<td>7</td>
+</tr>
+<tr>
+<td>&lsquo;innovation&rsquo;</td>
+<td>4</td>
+</tr>
+<tr>
+<td>&lsquo;product portfolio&rsquo;</td>
+<td>37</td>
+</tr>
+<tr>
+<td>&lsquo;patents&rsquo;</td>
+<td>4</td>
+</tr>
+<tr>
+<td>&lsquo;pricing&rsquo;</td>
+<td>2</td>
+</tr>
+<tr>
+<td>&lsquo;market share&rsquo;</td>
+<td>13</td>
+</tr>
+<tr>
+<td>&lsquo;suppliers&rsquo;</td>
+<td>11</td>
+</tr>
+<tr>
+<td>&lsquo;partners&rsquo;</td>
+<td>13</td>
+</tr>
+<tr>
+<td>&lsquo;segments&rsquo;</td>
+<td>3</td>
+</tr>
+<tr>
+<td>&lsquo;technology&rsquo;,&lsquo;technological&rsquo;</td>
+<td>17</td>
+</tr>
+<tr>
+<td>&lsquo;technics&rsquo;, &lsquo;engineering&rsquo;</td>
+<td>0</td>
+</tr>
+<tr>
+<td>&lsquo;operations&rsquo;</td>
+<td>5</td>
+</tr>
+<tr>
+<td>&lsquo;collaborative arrangements&rsquo;</td>
+<td>2</td>
+</tr>
+<tr>
+<td>&lsquo;future&rsquo;</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+
+</br>
+
+<p>As can be seen from the table above, the number of sentences obtained is quite high. In addition, some of them repeat. <b>In the next part of this series, we are going to automatically eliminate repeating sentences, and compare them with the previous years. </b></p>
+<p>For this part, however, we are going to manually screen the sentences.
+We decided to choose the most interesting, non repeatable or forward looking statements.</p>
+<p>
+</br>
+
+List of sentences:</p>
+<b>Research</b>
+<ul>
+<li>NVIDIA is working with several hundred partners in the automotive ecosystem including automakers, truck makers, tier-one suppliers, sensor manufacturers, automotive research institutions, HD mapping companies, and startups to develop and deploy AI systems for self-driving vehicles.</li>
+</ul>
+<ul>
+<li>NVIDIA&rsquo;s unique end-to-end, software-defined approach is designed for continuous innovation and continuous development, enabling cars to receive over-the-air updates to add new features and capabilities throughout the life of a vehicle.</li>
+</ul>
+<ul>
+<li>We apply our research and development resources to enhance the user experience for consumer entertainment and professional visualization applications, and create new virtual world and simulation capabilities.</li>
+</ul>
+<ul>
+<li>This approach significantly accelerates the most demanding high-performance computing, or HPC, applications in fields such as aerospace, bio-science research, mechanical and fluid simulations, and energy exploration.</li>
+</ul>
+<p>
+</br>
+
+<b>Acquisition</b></p>
+<ul>
+<li>With our acquisition of Mellanox, we strengthened our end-to-end expertise in data center architectures, positioning us for a future when the data center is the new unit of computing.</li>
+</ul>
+<p>
+</br>
+
+<b>Customer</b></p>
+<ul>
+<li>We are engaged with thousands of organizations working on AI in a multitude of industries, from automating tasks such as consumer product and service recommendations, to chatbots for the automation of or assistance with live customer interactions, to enabling fraud detection in financial services, to optimizing oil exploration and drilling.</li>
+</ul>
+<ul>
+<li>To facilitate customer adoption, we have also built other ready-to-use system reference designs around our GPUs, including HGX for hyperscale and supercomputing data centers, EGX for enterprise and edge computing, and AGX for autonomous machines.</li>
+</ul>
+<ul>
+<li>We believe that the depth and quality of our design support are key to improving our partner network’s time-to-market, maintaining a high level of customer satisfaction, and fostering relationships that encourage our end customers and partner network to use the next generation of our products within each platform.</li>
+</ul>
+<ul>
+<li>Thus, in addition to sales to customers in our partner network, certain of our platforms are also sold through e-tail channels, or direct to cloud service providers and enterprise customers.</li>
+</ul>
+<ul>
+<li>We typically receive semiconductor products from our subcontractors, perform incoming quality assurance and configuration using test equipment purchased from industry-leading suppliers such as Advantest America Inc., and then ship the semiconductors to contract manufacturers, such as BYD Auto Co. Ltd. and Hon Hai Precision Industry Co., distributors, motherboard and add-in card, or AIC, customers from our third-party warehouses in Hong Kong, Israel, and the United States.</li>
+</ul>
+<p>
+</br>
+
+<b>Competition</b></p>
+<ul>
+<li>We expect competition to increase from both existing competitors and new market entrants with products that may be lower priced than ours or may provide better performance or additional features not provided by our products.</li>
+</ul>
+<ul>
+<li>In addition, it is possible that new competitors or alliances among competitors could emerge and acquire significant market share.</li>
+</ul>
+<ul>
+<li>A significant source of competition comes from companies that provide or intend to provide GPUs, embedded SoCs, and other accelerated, AI computing processor products, and providers of semiconductor-based high-performance interconnect products based on InfiniBand, Ethernet, Fibre Channel and proprietary technologies.</li>
+</ul>
+<ul>
+<li>Our current competitors include: •suppliers and licensors designing discrete and integrated GPUs, custom chips and other accelerated computing solutions, such as Advanced Micro Devices, or AMD, and Intel Corporation, or Intel; •large internet services companies with internal teams designing chips that incorporate accelerated computing functionality as part of their internal solutions or platforms, such as Alibaba Group, Alphabet, and Amazon; •suppliers of SoC products that are embedded into automobiles, autonomous machines, and gaming devices, such as Ambarella, Inc., AMD, Broadcom Inc., Intel, Qualcomm Incorporated, Renesas Electronics Corporation, and Samsung, or companies with internal teams designing SoC products for internal use, such as Tesla Motors; and •suppliers of interconnect, switch and cable solutions such as AMD, Applied Optoelectronics, Inc., Arista Networks, Broadcom, Cisco, HP, Intel, Juniper Networks, Inc., Lumentum Holdings, and Marvell Technology Group, as well as internal teams of system vendors and large internet services companies such as Alphabet and Amazon.</li>
+</ul>
+<p>
+</br>
+
+<b>Innovation</b></p>
+<ul>
+<li>This full-stack innovation approach allows us to deliver order-of-magnitude performance advantages relative to legacy approaches in our target markets, which include Gaming, Data Center, Professional Visualization, and Automotive.</li>
+</ul>
+<b>Product</b>
+<ul>
+<li>Beyond GPUs, NVIDIA has expanded its data center processor portfolio to include DPUs, introduced in fiscal year 2021, and CPUs planned to ship in early fiscal year 2024.</li>
+</ul>
+<ul>
+<li>In addition to software that is delivered to customers as an integral part of our data center computing platform, we offer enterprise software products on a standalone basis as a perpetual license or subscription.</li>
+</ul>
+<ul>
+<li>Our enterprise software offerings include NVIDIA AI Enterprise, a comprehensive suite of enterprise-grade AI software; NVIDIA Fleet Command software-as-a-service for securely deploying and managing AI applications across distributed edge infrastructure; NVIDIA Base Command software-as-a-service for managing large-scale, multi-user and multi-team AI development workflows; and NVIDIA vGPU software products that enable powerful GPU performance for workloads ranging from graphics-rich virtual desktops and workstations to data science and AI.</li>
+</ul>
+<ul>
+<li>We have placed non-cancellable inventory orders for certain products in advance of our historical lead times, paid premiums and provided deposits to secure future supply and capacity and may need to continue to do so in the future.</li>
+</ul>
+<ul>
+<li>Manufacturing We do not manufacture semiconductors used for our products.</li>
+</ul>
+<ul>
+<li>While we may directly procure certain raw materials used in the production of our products, such as substrates and a variety of components, our suppliers are responsible for procurement of most of the raw materials used in the production of our products.</li>
+</ul>
+<ul>
+<li>We then utilize independent subcontractors, such as Amkor Technology, King Yuan Electronics Co., Ltd., Omni Logistics, LLC, Siliconware Precision Industries Company Ltd., and Wistron Corporation to perform assembly, testing, and packaging of most of our products and platforms.</li>
+</ul>
+<ul>
+<li>We use contract manufacturers such as Flex Ltd., Jabil Inc., and Universal Scientific Industrial Co., Ltd., to manufacture our standard and custom adapter card products and switch systems, and Fabrinet to manufacture our cables.</li>
+</ul>
+<p>
+</br>
+
+<b>Patent</b></p>
+<ul>
+<li>Our currently issued patents have expiration dates from February 2022 to June 2045.</li>
+</ul>
+<p>
+</br>
+
+<b>Market</b></p>
+<ul>
+<li>In addition to serving the growing number of gamers, the market for gaming GPUs is expanding as a result of the burgeoning population of live streamers, broadcasters, artists and creators.</li>
+</ul>
+<ul>
+<li>Our products for the gaming market include GeForce RTX and GeForce GTX GPUs for gaming desktop and laptop PCs, GeForce NOW cloud gaming for playing PC games on underpowered devices, SHIELD for high quality streaming on TV, as well as platforms and development services for specialized console gaming devices.</li>
+</ul>
+<ul>
+<li>Leveraging our technology leadership in AI and building on our long-standing automotive relationships, we are delivering a complete end-to-end solution for the AV market under the DRIVE brand.</li>
+</ul>
+<ul>
+<li>Therefore, we provide a full functionally safe AI-based hardware and software solution for the AV market under the DRIVE brand, which we are bringing to market through our partnerships with automotive original equipment manufacturers, or OEMs, tier-1 suppliers, and start-ups.</li>
+</ul>
+<p>
+</br>
+
+<b>Suppliers</b></p>
+<ul>
+<li>Our partner network incorporates each industry&rsquo;s respective OEMs, original device manufacturers, or ODMs, system builders, add-in board manufacturers, or AIBs, retailers/distributors, ISVs, internet and cloud service providers, automotive manufacturers and tier-1 automotive suppliers, mapping companies, start-ups, and other ecosystem participants.</li>
+</ul>
+<ul>
+<li>In fiscal year 2022, our demand exceeded our supply in several areas, and our revenue did not follow historical seasonal patterns.</li>
+</ul>
+<ul>
+<li>Our fiscal year 2022 supply-constrained environment or historical seasonality trends may not repeat.</li>
+</ul>
+<p>
+</br>
+
+<b>Partner</b></p>
+<ul>
+<li>The programmable nature of our architecture allows us to support several multi-billion-dollar end markets with the same underlying technology by using a variety of software stacks developed either internally or by third party developers and partners.</li>
+</ul>
+<p>
+</br>
+
+<b>Segments</b></p>
+<ul>
+<li>Our Businesses We report our business results in two segments.</li>
+</ul>
+<ul>
+<li>Our Graphics segment includes GeForce GPUs for gaming and PCs, the GeForce NOW game streaming service and related infrastructure, and solutions for gaming platforms; Quadro/NVIDIA RTX GPUs for enterprise workstation graphics; virtual GPU, or vGPU, software for cloud-based visual and virtual computing; automotive platforms for infotainment systems; and Omniverse software for building 3D designs and virtual worlds.</li>
+</ul>
+<ul>
+<li>Our Compute &amp; Networking segment includes Data Center platforms and systems for AI, HPC, and accelerated computing; Mellanox networking and interconnect solutions; automotive AI Cockpit, autonomous driving development agreements, and autonomous vehicle solutions; cryptocurrency mining processors, or CMP; Jetson for robotics and other embedded platforms; and NVIDIA AI Enterprise and other software.</li>
+</ul>
+<p>
+</br>
+
+<b>Technology</b></p>
+<ul>
+<li>Our AI technology leadership is reinforced by our large and expanding ecosystem in a virtuous cycle.</li>
+</ul>
+<ul>
+<li>There are almost 3 million developers worldwide using CUDA and our other software tools to help deploy our technology in our target markets.</li>
+</ul>
+<ul>
+<li>In our view, AI is the key technology enabler of this opportunity, as the algorithms required for autonomous driving - such as perception, localization, and planning - are too complex for legacy hand-coded approaches and will run on multiple trained neural networks instead.</li>
+</ul>
+<p>
+</br>
+
+<b>Operations</b></p>
+<ul>
+<li>Additionally, we can avoid many of the significant costs and risks associated with owning and operating manufacturing operations.</li>
+</ul>
+<p>
+</br>
+
+<b>Future</b></p>
+<ul>
+<li>We recently announced for future release the DRIVE Software platform that includes DRIVE Chauffeur – based on NVIDIA DRIVE AV software to enable autonomous driving, mapping and parking services; and Drive Concierge – based on NVIDIA DRIVE IX software for intelligent in-vehicle experiences and NVIDIA Omniverse Avatar software for real time conversational AI capability.</li>
+</ul>
+<ul>
+<li>We expect an increasingly competitive environment in the future.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>According to the analysis, the number of sentences obtained by searching for predetermined phrases or keywords is still too high. Some of those sentences repeat and need to be eliminated. Also, some of those sentences were used in SEC filings for previous years, and they&rsquo;re way less meaningful then fresh statements in the report. Such sentences also need to be set lower in priority in order to facilitate the analysis.  That&rsquo;s the topic for the final part of this series of articles on Nvidia SEC filings analysis.</p>
+<blockquote>
+<p>Repeating sentences need to be eliminated. Comparison to previous years will refocus the analysis on more meaningful statements from the SEC filings.</p>
+</blockquote>
+</div>
+        <hr class="py-2">
+        <aside id="meta">
+            
+            <div id="categories">
+                <span class="icon-folder text-xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-200 justify-center h-8 px-3 text-blue-500 hover:text-black dark:bg-warmgray-800"><a
+                        href="https://www.codingeconomist.com/categories/analysis">analysis</a></span>
+                
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://www.codingeconomist.com/post/reading_nvidia_financial_reports/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Reading Nvidia financial reports with the help of Natural Language Processing - Part I
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </aside>
+        <hr class="py-2">
+        <div class="mb-3">
+            
+        </div>
+    </div>
+    <div class="hidden lg:block lg:col-span-1">
+        
+<div class="mb-3">
+    <form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+        <label>
+            <input class="w-full p-3 focus:outline-none dark:bg-warmgray-900 dark:text-white" type="search"
+                placeholder="Search..." value="" name="q" aria-label="Search">
+        </label>
+        <input class="hidden" type="submit" value="Search">
+        <input type="hidden" name="sitesearch" value="https://www.codingeconomist.com" />
+    </form>
+</div>
+
+        
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 px-3 dark:text-gray-300">Archives</p>
+    
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/07">2021/07 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/08">2021/08 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/09">2021/09 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/10">2021/10 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/11">2021/11 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2021/12">2021/12 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/02">2022/02 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/03">2022/03 (3)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/04">2022/04 (1)</a>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/archives/2022/05">2022/05 (1)</a>
+    
+    
+</div>
+
+        
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Categories</p>
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/analysis">Analysis</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/crypto">Crypto</a>
+
+    
+    <a class="text-center block duration-100 py-2 px-4 mx-4 hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-warmgray-800"
+        href="https://www.codingeconomist.com/categories/cryptocurrencies">Cryptocurrencies</a>
+
+    
+</div>
+
+
+        
+
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300">Tags</p>
+    <div class="panel-block p-2">
+        <a href="/tags/algorythms">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                algorythms
+            </span></a>
+        <a href="/tags/analysis">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                analysis
+            </span></a>
+        <a href="/tags/crypto">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                crypto
+            </span></a>
+        <a href="/tags/cryptocurrencies">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                cryptocurrencies
+            </span></a>
+        <a href="/tags/dao">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dao
+            </span></a>
+        <a href="/tags/defi">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                defi
+            </span></a>
+        <a href="/tags/dex">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                dex
+            </span></a>
+        <a href="/tags/smartcontracts">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                smartcontracts
+            </span></a>
+        <a href="/tags/valuation">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                valuation
+            </span></a>
+    </div>
+</div>
+
+
+
+        
+
+
+<div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
+    <div class="mx-6">
+        
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/cardano_vs_polkadot/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Differences between Cardano and Polkadot blockchains</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/11/08</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/problem_with_analyzing_intel_sec_filings/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">The problem with Intel&#39;s SEC filings and NLP</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/03/29</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/what_is_cardano/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">What is Cardano?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/08/09</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/ethereum_price_vs_gas_price/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Ether price vs Ethereum Gas price - more utility in the Ethereum network?</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/03/26</time>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+            </div>
+        </div><footer class="bg-gray-800 text-white p-6">
+    
+    <div class="container max-w-screen-xl mr-auto ml-auto">
+        <p>&copy; 2022 <a href="https://www.codingeconomist.com" class="hover:text-gray-500">CodingEconomist</a></p>
+        <p>Powered by <a href="https://www.python.org/" class="hover:text-gray-500">Data Science</a>, and Spin <a
+                href="" class="hover:text-gray-500">Doctors</a>.</p>
+    </div>
+    <script>
+        var icon = document.getElementById("icon");
+        var icon2 = document.getElementById("icon2");
+        
+        if (document.documentElement.classList.contains("dark") || localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          icon.classList.remove("icon-moon");
+          icon.classList.add("icon-sun");
+          icon2.classList.remove("icon-moon");
+          icon2.classList.add("icon-sun");
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        function toggleDarkMode() {
+        if (document.documentElement.classList.contains('dark')) {
+            icon.classList.remove("icon-sun");
+            icon.classList.add("icon-moon");
+            icon2.classList.remove("icon-sun");
+            icon2.classList.add("icon-moon");
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+        } else {
+            icon.classList.remove("icon-moon");
+            icon.classList.add("icon-sun");
+            icon2.classList.remove("icon-moon");
+            icon2.classList.add("icon-sun");
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        }
+    }
+    </script>
+</footer>
+</div>
+</body>
+
+</html>

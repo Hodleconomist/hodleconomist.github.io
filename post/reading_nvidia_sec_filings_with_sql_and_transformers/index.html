@@ -204,7 +204,7 @@ Source: Own study</p>
 <h3 id="time-period">Time period</h3>
 <p>Nvidia&rsquo;s financial reports ending 2022 and 2021.</p>
 <h3 id="results">Results</h3>
-<p>The initial database query for Research keyword year ending 2022, contained <b>14 sentences</b>. Eliminating repeating sentences with just the help of sql query, reduced the number of <b>sentences to 10</b>.</p>
+<p>The initial database query for Research keyword in the latest report, contained <b>14 sentences</b>. Eliminating repeating sentences with just the help of sql query, reduced the number of <b>sentences to 10</b>.</p>
 <p>In the final stage of the analysis, we used sentence transformers and all-MiniLM-L6-v2 model which is an all-round model tuned for many use-cases. The model is trained on a large and diverse dataset of over 1 billion training pairs.
 Using this model we have reduced the number of unique <b>sentences to 5</b>.</p>
 <p>As mentioned before, the analysis also shows that many sentences are being copy-pasted across different years.</p>
@@ -236,11 +236,11 @@ Using this model we have reduced the number of unique <b>sentences to 5</b>.</p>
 
 </br>
 
-<p>It has to be noted that the process of elimination of equal sentences, which in this case was done using the SQL query, could also be made with Sentence Transformers. In the example however, the goal was to indicate that one can also delegate some task to the database by using the power of SQL queries.</p>
+<p>It has to be noted that the process of elimination of equal sentences, which in this case was done using the SQL query, could also be made with Sentence Transformers. In this instance however, the goal was to indicate that one can also delegate some task to the database by using the power of SQL queries.</p>
 <p>One example is the FTS5 Extension for Sqlite3, which supports full text search. Full text search engine allow the user to efficiently search a large collection of documents for the subset that contain one or more instances of a search term.
 FTS5 supports among others: String search, Phrases search, Prefix search, Initial Token Queries, NEAR Queries.</p>
 <h3 id="conclusion">Conclusion</h3>
-<p>There are many routes to be taken in order to arrive at the destination of reducing the number of sentences to be read. Some of the more common ways may include using the regex.</p>
+<p>There are many possible ways in order reduce the number of sentences. Some of the more common ways may include using regex.</p>
 <p>As shown in the analysis, even some sql queries can be used to eliminate same or similar sentences.
 However, the heavy lifting is mostly done using some form of machine learning models, in our example - sentence transformers model.</p>
 <p>By using several of those methods together, we have managed to reduce the number of sentences needed to be read by almost 65% in this particular case. This does not account of course for primary phrase or keyword extraction, which was done in part I and II of this series.</p>
@@ -375,15 +375,6 @@ However, the heavy lifting is mostly done using some form of machine learning mo
     <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300">Recent Posts</p>
     <div class="mx-6">
         
-        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
-            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
-                <div class="px-2">
-                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
-                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
-                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
-                    </p>
-                </div>
-            </div>
         <a href="/post/cardano_vs_polkadot/" class="">
             <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
                 <div class="px-2">
@@ -393,21 +384,12 @@ However, the heavy lifting is mostly done using some form of machine learning mo
                     </p>
                 </div>
             </div>
-        <a href="/post/analysis_of_new_technology_companies/" class="">
+        <a href="/post/problem_with_analyzing_intel_sec_filings/" class="">
             <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
                 <div class="px-2">
-                    <div class="text-gray-900 font-bold text-xl dark:text-white">Using NLP and SEC filings to explore hitech companies</div>
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">The problem with Intel&#39;s SEC filings and NLP</div>
                     <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
-                        <time><span class="icon-access_time mr-1"></span>2022/03/20</time>
-                    </p>
-                </div>
-            </div>
-        <a href="/post/ethereum_price_vs_gas_price/" class="">
-            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
-                <div class="px-2">
-                    <div class="text-gray-900 font-bold text-xl dark:text-white">Ether price vs Ethereum Gas price - more utility in the Ethereum network?</div>
-                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
-                        <time><span class="icon-access_time mr-1"></span>2022/03/26</time>
+                        <time><span class="icon-access_time mr-1"></span>2022/03/29</time>
                     </p>
                 </div>
             </div>
@@ -417,6 +399,24 @@ However, the heavy lifting is mostly done using some form of machine learning mo
                     <div class="text-gray-900 font-bold text-xl dark:text-white">Classification of market phases for crypto assets with HDBSCAN machine learning and PCA dimensions reduction method</div>
                     <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
                         <time><span class="icon-access_time mr-1"></span>2021/12/07</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/valuation_of_uniswap_sushiswap_coinbase/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Comparable analysis of Uniswap vs Sushiswap vs Coinbase</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2021/09/14</time>
+                    </p>
+                </div>
+            </div>
+        <a href="/post/reading_nvidia_sec_filings_with_nlp/" class="">
+            <div class="w-full block mt-3 bg-white hover:bg-gray-100 duration-200 dark:bg-warmgray-900 dark:text-gray-200 dark:hover:bg-warmgray-800">
+                <div class="px-2">
+                    <div class="text-gray-900 font-bold text-xl dark:text-white">Reading Nvidia SEC filings with the help of Natural Language Processing - Part II</div>
+                    <p class="text-sm text-gray-600 flex items-center pb-1 dark:text-gray-400">
+                        <time><span class="icon-access_time mr-1"></span>2022/05/04</time>
                     </p>
                 </div>
             </div>

@@ -6,7 +6,17 @@
     <description>Recent content on CodingEconomist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.codingeconomist.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Percentage loss from peak to bottom for crypto coins during 2022 bear market</title>
+      <link>https://www.codingeconomist.com/post/percentage_loss_crypto_coins_during_bear_market/</link>
+      <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/percentage_loss_crypto_coins_during_bear_market/</guid>
+      <description>Crypto is in a bear market. How did individual coins fare compared to one another? Introduction The crypto market is currently in a bear market (second quarter of 2022). Some analysts expect it to fall even lower, and according to others, the market has already hit the bottom.
+As every crypto investor knows, the crypto market is not a monolith. It consists of many protocols with different utility. So at least in theory it should exhibit varied performance between different coins.</description>
+    </item>
+    
     <item>
       <title>Reading Nvidia SEC filings with SQL and Sentence Transformers - Part III</title>
       <link>https://www.codingeconomist.com/post/reading_nvidia_sec_filings_with_sql_and_transformers/</link>

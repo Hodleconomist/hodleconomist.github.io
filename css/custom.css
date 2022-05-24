@@ -2,3 +2,12 @@
  This CSS file is used to override the existing styles of the theme.
  You can change the article headings, fonts, colors, etc.
 */
+
+/*
+nav {
+    background-image: url("/img/Banner_Main.png");
+        background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center; 
+}
+*/

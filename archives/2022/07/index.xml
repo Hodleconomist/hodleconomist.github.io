@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022/07 on CodingEconomist</title>
+    <link>https://www.codingeconomist.com/archives/2022/07/</link>
+    <description>Recent content in 2022/07 on CodingEconomist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://www.codingeconomist.com/archives/2022/07/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Short analysis of Clinical Trials data with focus on studies related to Covid-19</title>
+      <link>https://www.codingeconomist.com/post/clinical_trials_analysis_with_python_and_pandas/</link>
+      <pubDate>Mon, 25 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.codingeconomist.com/post/clinical_trials_analysis_with_python_and_pandas/</guid>
+      <description>How many clinical trials are related to Covid-19 research vs other conditions? Introduction At the onset of Coronavirus Pandemics the rush to fund research on Covid-19 vaccines and drugs was enormous. The National Institute of Health (NIH) alone, has received almost $4.9 billion to date to fund important COVID-19 research on diagnostic tests, vaccines, and treatments. Over the past 18 months, CIHR distributed more than $236 million to 556 projects in 23 competitions.</description>
+    </item>
+    
+  </channel>
+</rss>
